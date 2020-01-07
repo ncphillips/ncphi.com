@@ -1,16 +1,36 @@
-import { useCMS, useLocalForm, useWatchFormValues } from "tinacms";
-import { useState, useEffect, useCallback } from "react";
+import {
+  useCMS,
+  useWatchFormValues,
+  useForm,
+  usePlugins,
+  GlobalFormPlugin
+} from "tinacms";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 export interface JsonFile<T = any> {
   fileRelativePath: string;
   data: T;
 }
 
-export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
+function useJsonForm<T = any>(jsonFile: JsonFile<T>) {
   const cms = useCMS();
-  const valuesInGit = useJsonFromGit(jsonFile);
 
-  const [values, form] = useLocalForm(
+  const [valuesInGit, setValuesInGit] = useState<JsonFile<T>>();
+
+  useEffect(() => {
+    cms.api.git
+      .show(jsonFile.fileRelativePath) // Load the contents of this file at HEAD
+      .then((git: { content: string }) => {
+        const jsonFileInGit = JSON.parse(git.content);
+
+        setValuesInGit(jsonFileInGit);
+      })
+      .catch((e: any) => {
+        console.log("FAILED", e);
+      });
+  }, [jsonFile.fileRelativePath]);
+
+  const [values, form] = useForm(
     {
       id: jsonFile.fileRelativePath,
       label: jsonFile.fileRelativePath,
@@ -38,23 +58,23 @@ export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
   return [values, form];
 }
 
-function useJsonFromGit<T = any>(jsonFile: JsonFile<T>) {
-  const cms = useCMS();
+export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
+  const [values, form] = useJsonForm(jsonFile);
 
-  const [valuesInGit, setValuesInGit] = useState<JsonFile<T>>();
+  usePlugins(form);
 
-  useEffect(() => {
-    cms.api.git
-      .show(jsonFile.fileRelativePath) // Load the contents of this file at HEAD
-      .then((git: { content: string }) => {
-        const jsonFileInGit = JSON.parse(git.content);
+  return [values, form];
+}
 
-        setValuesInGit(jsonFileInGit);
-      })
-      .catch((e: any) => {
-        console.log("FAILED", e);
-      });
-  }, [jsonFile.fileRelativePath]);
+export function useGlobalJsonForm(jsonFile: JsonFile) {
+  const [values, form] = useJsonForm(jsonFile);
+  const globalFormPlugin = useMemo(() => {
+    if (form) {
+      return new GlobalFormPlugin(form, null);
+    }
+  }, [form]);
 
-  return valuesInGit;
+  usePlugins(globalFormPlugin);
+
+  return [values, form];
 }
