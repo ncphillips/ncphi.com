@@ -7,12 +7,18 @@ import {
 } from "tinacms";
 import { useState, useEffect, useCallback, useMemo } from "react";
 
+/**
+ * A datastructure representing a JsonFile stored in Git
+ */
 export interface JsonFile<T = any> {
   fileRelativePath: string;
   data: T;
 }
 
-function useJsonForm<T = any>(jsonFile: JsonFile<T>) {
+/**
+ * Creates a TinaCMS Form for editing a JsonFile in Git
+ */
+export function useJsonForm<T = any>(jsonFile: JsonFile<T>) {
   const cms = useCMS();
 
   const [valuesInGit, setValuesInGit] = useState<JsonFile<T>>();
@@ -58,6 +64,9 @@ function useJsonForm<T = any>(jsonFile: JsonFile<T>) {
   return [values, form];
 }
 
+/**
+ * Registers a Local Form with TinaCMS for editing a Json File.
+ */
 export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
   const [values, form] = useJsonForm(jsonFile);
 
@@ -66,6 +75,9 @@ export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
   return [values, form];
 }
 
+/**
+ * Registers a Global Form with TinaCMS for editing a Json File.
+ */
 export function useGlobalJsonForm(jsonFile: JsonFile) {
   const [values, form] = useJsonForm(jsonFile);
   const globalFormPlugin = useMemo(() => {
