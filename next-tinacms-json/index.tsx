@@ -1,5 +1,5 @@
-import { useCMS, useLocalForm } from "tinacms";
-import { useState, useEffect } from "react";
+import { useCMS, useLocalForm, useWatchFormValues } from "tinacms";
+import { useState, useEffect, useCallback } from "react";
 
 export interface JsonFile<T = any> {
   fileRelativePath: string;
@@ -15,12 +15,7 @@ export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
       id: jsonFile.fileRelativePath,
       label: jsonFile.fileRelativePath,
       initialValues: valuesInGit,
-      async onSubmit(values) {
-        await cms.api.git.writeToDisk({
-          fileRelativePath: jsonFile.fileRelativePath,
-          content: JSON.stringify(values)
-        });
-
+      onSubmit() {
         return cms.api.git.commit({
           files: [jsonFile.fileRelativePath],
           message: `Commit from Tina: Update ${jsonFile.fileRelativePath}`
@@ -30,6 +25,15 @@ export function useLocalJsonForm<T = any>(jsonFile: JsonFile<T>) {
     },
     { values: jsonFile.data }
   );
+
+  let writeToDisk = useCallback(formState => {
+    cms.api.git.writeToDisk({
+      fileRelativePath: jsonFile.fileRelativePath,
+      content: JSON.stringify({ title: formState.values.title })
+    });
+  }, []);
+
+  useWatchFormValues(form, writeToDisk);
 
   return [values, form];
 }
