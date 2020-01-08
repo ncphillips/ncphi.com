@@ -61,7 +61,7 @@ export function useJsonForm<T = any>(jsonFile: JsonFile<T>) {
 
   useWatchFormValues(form, writeToDisk);
 
-  return [values, form];
+  return [values || jsonFile.data, form];
 }
 
 /**
