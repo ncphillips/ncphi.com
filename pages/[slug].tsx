@@ -5,11 +5,11 @@ import { JsonFile, useLocalJsonForm } from "../next-tinacms-json";
 type JsonPost = JsonFile<{ title: string }>;
 
 export default function Page(props: JsonPost) {
-  const [jsonFile] = useLocalJsonForm(props);
+  const [data] = useLocalJsonForm(props);
 
   return (
     <>
-      <h1>{jsonFile?.title}</h1>
+      <h1>{data.title}</h1>
     </>
   );
 }
