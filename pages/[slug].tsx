@@ -1,27 +1,36 @@
-import { NextPageContext } from "next";
 import * as React from "react";
-import { JsonFile, useLocalJsonForm } from "../next-tinacms-json";
+import { inlineJsonForm } from "../next-tinacms-json";
+import { TinaField } from "tinacms";
 
-type JsonPost = JsonFile<{ title: string }>;
+const PlainText = ({ input }: any) => (
+  <input style={{ background: "transparent" }} {...input} />
+);
 
-export default function Page(props: JsonPost) {
-  const [data] = useLocalJsonForm(props);
+const Post = inlineJsonForm(({ data, setIsEditing, isEditing }) => (
+  <>
+    <h1>
+      <TinaField name="title" Component={PlainText}>
+        {data.title}
+      </TinaField>
+    </h1>
+    <button onClick={() => setIsEditing(!isEditing)}>
+      {isEditing ? "Preview" : "Edit"}
+    </button>
+  </>
+));
 
-  return (
-    <>
-      <h1>{data.title}</h1>
-    </>
-  );
-}
-
-Page.getInitialProps = function(ctx: NextPageContext): JsonPost {
+Post.getInitialProps = function(ctx) {
   const { slug } = ctx.query;
+
   let content = require(`../posts/${slug}.json`);
 
   return {
-    fileRelativePath: `/posts/${slug}.json`,
-    data: {
-      title: content.title
+    jsonFile: {
+      fileRelativePath: `/posts/${slug}.json`,
+      data: {
+        title: content.title
+      }
     }
   };
 };
+export default Post;

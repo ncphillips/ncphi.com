@@ -3,9 +3,12 @@ import {
   useWatchFormValues,
   useForm,
   usePlugins,
-  GlobalFormPlugin
+  GlobalFormPlugin,
+  TinaForm,
+  Form
 } from "tinacms";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, FC } from "react";
+import { NextPage } from "next";
 
 /**
  * A datastructure representing a JsonFile stored in Git
@@ -89,4 +92,49 @@ export function useGlobalJsonForm(jsonFile: JsonFile) {
   usePlugins(globalFormPlugin);
 
   return [values, form];
+}
+
+export interface InlineJsonFormProps {
+  jsonFile: JsonFile;
+  children(props: InlineJsonFormRenderProps): React.ReactElement;
+}
+
+export interface InlineJsonFormRenderProps {
+  form: Form;
+  data: any;
+  isEditing: boolean;
+  setIsEditing(value: boolean): void;
+}
+
+export const InlineJsonForm: FC<InlineJsonFormProps> = props => {
+  const [data, form] = useLocalJsonForm(props.jsonFile);
+
+  return (
+    <TinaForm form={form}>
+      {editingProps => {
+        return props.children({
+          ...editingProps,
+          form,
+          data
+        });
+      }}
+    </TinaForm>
+  );
+};
+
+/**
+ * inlineJsonForm
+ */
+export function inlineJsonForm(
+  Component: FC<InlineJsonFormRenderProps>
+): NextPage<{ jsonFile: JsonFile }> {
+  return props => {
+    return (
+      <InlineJsonForm jsonFile={props.jsonFile}>
+        {inlineProps => {
+          return <Component {...inlineProps} />;
+        }}
+      </InlineJsonForm>
+    );
+  };
 }
