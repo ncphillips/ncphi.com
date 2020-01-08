@@ -6,12 +6,16 @@ const PlainText = ({ input }: any) => (
   <input style={{ background: "transparent" }} {...input} />
 );
 
-const Post = inlineJsonForm(({ data, setIsEditing, isEditing }) => (
+const InlineText = ({ name, children }: any) => (
+  <TinaField name={name} Component={PlainText}>
+    {children}
+  </TinaField>
+);
+
+const Post = inlineJsonForm(({ data: post, setIsEditing, isEditing }) => (
   <>
     <h1>
-      <TinaField name="title" Component={PlainText}>
-        {data.title}
-      </TinaField>
+      <InlineText name="title">{post.title}</InlineText>
     </h1>
     <button onClick={() => setIsEditing(!isEditing)}>
       {isEditing ? "Preview" : "Edit"}
