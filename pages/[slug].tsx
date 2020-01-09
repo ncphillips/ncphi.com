@@ -1,5 +1,5 @@
 import * as React from "react";
-import { inlineJsonForm } from "../next-tinacms-json";
+import { inlineJsonForm } from "next-tinacms-json";
 import { TinaField } from "tinacms";
 
 const PlainText = ({ input }: any) => (
