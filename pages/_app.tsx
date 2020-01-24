@@ -17,7 +17,7 @@ export default class MyApp extends App {
       <Tina
         cms={this.cms}
         position="displace"
-        hidden={process.env.NODE_ENV === "production"}
+        // hidden={process.env.NODE_ENV === "production"}
       >
         <Component {...pageProps} />
       </Tina>

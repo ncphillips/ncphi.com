@@ -12,8 +12,6 @@ const Post: NextPage<{ post: MarkdownFile }> = props => {
     ]
   });
 
-  console.log(post);
-
   return (
     <>
       <h1>{post.frontmatter.title}</h1>
