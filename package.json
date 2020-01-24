@@ -19,7 +19,7 @@
     "moment": "^2.24.0",
     "next": "^9.1.7",
     "next-tinacms-json": "^0.1.2",
-    "next-tinacms-markdown": "0.1.0-canary.2441",
+    "next-tinacms-markdown": "0.1.0-alpha.1",
     "raw-loader": "^4.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
