@@ -21,7 +21,7 @@ module.exports = {
     const posts = fs.readdirSync("./posts");
 
     posts.forEach(filename => {
-      const slug = filename.replace(".json", "");
+      const slug = filename.replace(".md", "");
       pathMap[`/blog/${slug}`] = {
         page: "/blog/[slug]",
         query: {
