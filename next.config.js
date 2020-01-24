@@ -18,7 +18,7 @@ module.exports = {
     /**
      * Generate Path Maps for all posts
      */
-    const posts = fs.readdirSync("./src/content");
+    const posts = fs.readdirSync("./src/content/blog");
 
     posts.forEach(filename => {
       const slug = filename.replace(".md", "");
