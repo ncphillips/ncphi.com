@@ -5,12 +5,14 @@ import { MarkdownFile, useLocalMarkdownForm } from "next-tinacms-markdown";
 import grayMatter from "gray-matter";
 
 const Post: NextPage<{ post: MarkdownFile }> = props => {
-  const [post] = useLocalMarkdownForm(props.post, {
+  const [post, form] = useLocalMarkdownForm(props.post, {
     fields: [
       { name: "frontmatter.title", component: "text" },
       { name: "markdownBody", component: "markdown" }
     ]
   });
+
+  console.log(post, form);
 
   return (
     <>
