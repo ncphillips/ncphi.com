@@ -6,7 +6,10 @@ import grayMatter from "gray-matter";
 
 const Post: NextPage<{ post: MarkdownFile }> = props => {
   const [post] = useLocalMarkdownForm(props.post, {
-    fields: []
+    fields: [
+      { name: "frontmatter.title", component: "text" },
+      { name: "markdownBody", component: "markdown" }
+    ]
   });
 
   console.log(post);
@@ -24,7 +27,7 @@ const Post: NextPage<{ post: MarkdownFile }> = props => {
 Post.getInitialProps = async function(ctx) {
   const { slug } = ctx.query;
   const rawContent = await import(`../../posts/${slug}.md`);
-  const { matter: frontmatter = {}, content: markdownBody } = grayMatter(
+  const { data: frontmatter = {}, content: markdownBody } = grayMatter(
     rawContent.default
   );
 
