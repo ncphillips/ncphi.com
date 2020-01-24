@@ -20,3 +20,22 @@ export default class MyApp extends App {
     );
   }
 }
+
+// class NcphiDotCom extends App {
+//   render() {
+//     const { Component, pageProps } = this.props;
+//     return <Component {...pageProps} />;
+//   }
+// }
+
+// export default withTina(NcphiDo, {
+//   cms: {
+//     apis: {
+//       git: new GitClient("http://localhost:3000/___tina")
+//     }
+//   },
+//   sidebar: {
+//     position: "displace",
+//     hidden: process.env.NODE_ENV === "production"
+//   }
+// });

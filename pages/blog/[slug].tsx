@@ -1,40 +1,39 @@
 import * as React from "react";
-import { inlineJsonForm } from "next-tinacms-json";
-import { TinaField } from "tinacms";
+import ReactMarkdown from "react-markdown";
+import { NextPage } from "next";
+import { MarkdownFile, useLocalMarkdownForm } from "next-tinacms-markdown";
+import grayMatter from "gray-matter";
 
-const PlainText = ({ input }: any) => (
-  <input style={{ background: "transparent" }} {...input} />
-);
+const Post: NextPage<{ post: MarkdownFile }> = props => {
+  const [post] = useLocalMarkdownForm(props.post, {
+    fields: [
+      { name: "frontmatter.title", component: "text" },
+      { name: "markdownBody", component: "markdown" }
+    ]
+  });
 
-const InlineText = ({ name, children }: any) => (
-  <TinaField name={name} Component={PlainText}>
-    {children}
-  </TinaField>
-);
+  return (
+    <>
+      <h1>{post.frontmatter.title}</h1>
+      <ReactMarkdown source={post.markdownBody} />
+    </>
+  );
+};
 
-const Post = inlineJsonForm(({ data: post, setIsEditing, isEditing }) => (
-  <>
-    <h1>
-      <InlineText name="title">{post.title}</InlineText>
-    </h1>
-    <button onClick={() => setIsEditing(!isEditing)}>
-      {isEditing ? "Preview" : "Edit"}
-    </button>
-  </>
-));
-
-Post.getInitialProps = function(ctx) {
+Post.getInitialProps = async function(ctx) {
   const { slug } = ctx.query;
-
-  let content = require(`../posts/${slug}.json`);
+  const rawContent = await import(`../../posts/${slug}.md`);
+  const { matter: frontmatter = {}, content: markdownBody } = grayMatter(
+    rawContent.default
+  );
 
   return {
-    jsonFile: {
-      fileRelativePath: `/posts/${slug}.json`,
-      data: {
-        title: content.title
-      }
+    post: {
+      fileRelativePath: `posts/${slug}.md`,
+      frontmatter,
+      markdownBody
     }
   };
 };
+
 export default Post;
