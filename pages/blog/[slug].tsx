@@ -6,16 +6,17 @@ import grayMatter from "gray-matter";
 
 const Post: NextPage<{ post: MarkdownFile }> = props => {
   const [post] = useLocalMarkdownForm(props.post, {
-    fields: [
-      { name: "frontmatter.title", component: "text" },
-      { name: "markdownBody", component: "markdown" }
-    ]
+    fields: []
   });
+
+  console.log(post);
 
   return (
     <>
       <h1>{post.frontmatter.title}</h1>
-      <ReactMarkdown source={post.markdownBody} />
+      <div>
+        <ReactMarkdown source={post.markdownBody} />
+      </div>
     </>
   );
 };
