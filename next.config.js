@@ -15,8 +15,8 @@ module.exports = {
 
     posts.forEach(filename => {
       const slug = filename.replace(".json", "");
-      pathMap[`/${slug}`] = {
-        page: "/[slug]",
+      pathMap[`/blog/${slug}`] = {
+        page: "/blog/[slug]",
         query: {
           slug
         }
