@@ -14,7 +14,11 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Tina cms={this.cms} position="displace">
+      <Tina
+        cms={this.cms}
+        position="displace"
+        hidden={process.env.NODE_ENV === "production"}
+      >
         <Component {...pageProps} />
       </Tina>
     );
