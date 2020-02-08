@@ -18,14 +18,15 @@
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "next": "^9.1.7",
-    "next-tinacms-json": "^0.1.2",
-    "next-tinacms-markdown": "0.1.0-alpha.1",
+    "next-tinacms-json": "^0.3.1-alpha.0",
+    "next-tinacms-markdown": "^0.2.1-alpha.0",
     "raw-loader": "^4.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-markdown": "^4.3.1",
+    "react-tinacms-inline": "^0.1.0-alpha.0",
     "styled-components": "^4.4.1",
-    "tinacms": "^0.11.3"
+    "tinacms": "^0.13.0-alpha.0"
   },
   "devDependencies": {
     "@types/node": "^13.1.4",

@@ -8,38 +8,20 @@ export default class MyApp extends App {
 
   constructor(props: AppProps) {
     super(props);
-    this.cms = new TinaCMS();
+    this.cms = new TinaCMS({
+      sidebar: {
+        hidden: false, //process.env.NODE_ENV === "production",
+        position: "displace"
+      }
+    });
     this.cms.registerApi("git", new GitClient("http://localhost:3000/___tina"));
   }
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Tina
-        cms={this.cms}
-        position="displace"
-        // hidden={process.env.NODE_ENV === "production"}
-      >
+      <Tina cms={this.cms}>
         <Component {...pageProps} />
       </Tina>
     );
   }
 }
-
-// class NcphiDotCom extends App {
-//   render() {
-//     const { Component, pageProps } = this.props;
-//     return <Component {...pageProps} />;
-//   }
-// }
-
-// export default withTina(NcphiDo, {
-//   cms: {
-//     apis: {
-//       git: new GitClient("http://localhost:3000/___tina")
-//     }
-//   },
-//   sidebar: {
-//     position: "displace",
-//     hidden: process.env.NODE_ENV === "production"
-//   }
-// });
