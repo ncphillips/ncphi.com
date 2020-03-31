@@ -17,7 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "moment": "^2.24.0",
-    "next": "^9.1.7",
+    "next": "^9.3.2",
     "next-tinacms-json": "^0.3.1-alpha.0",
     "next-tinacms-markdown": "^0.2.1-alpha.0",
     "raw-loader": "^4.0.0",
