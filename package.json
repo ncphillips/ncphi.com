@@ -16,6 +16,7 @@
     "@tinacms/git-client": "^0.4.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "final-form-submit-listener": "^1.0.0",
     "moment": "^2.24.0",
     "next": "^9.3.4",
     "next-tinacms-github": "^0.0.2-canary4.0",
