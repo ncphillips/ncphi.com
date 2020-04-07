@@ -1,7 +1,7 @@
-import React from "react";
-import App, { AppProps } from "next/app";
-import { Tina, TinaCMS } from "tinacms";
-import { GitClient } from "@tinacms/git-client";
+import React from 'react';
+import App, { AppProps } from 'next/app';
+import { TinaProvider, TinaCMS } from 'tinacms';
+import { GitClient } from '@tinacms/git-client';
 
 export default class MyApp extends App {
   private cms: TinaCMS;
@@ -9,19 +9,16 @@ export default class MyApp extends App {
   constructor(props: AppProps) {
     super(props);
     this.cms = new TinaCMS({
-      sidebar: {
-        hidden: false, //process.env.NODE_ENV === "production",
-        position: "displace"
-      }
+      sidebar: { hidden: true },
+      toolbar: { hidden: false },
     });
-    this.cms.registerApi("git", new GitClient("http://localhost:3000/___tina"));
   }
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Tina cms={this.cms}>
+      <TinaProvider cms={this.cms}>
         <Component {...pageProps} />
-      </Tina>
+      </TinaProvider>
     );
   }
 }
