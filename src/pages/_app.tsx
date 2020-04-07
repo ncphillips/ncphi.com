@@ -1,6 +1,7 @@
 import React from 'react';
 import App, { AppProps } from 'next/app';
 import { TinaProvider, TinaCMS } from 'tinacms';
+import { GithubClient } from 'react-tinacms-github';
 import { Layout } from '../components/Layout';
 
 export default class MyApp extends App {
@@ -9,6 +10,12 @@ export default class MyApp extends App {
   constructor(props: AppProps) {
     super(props);
     this.cms = new TinaCMS({
+      apis: {
+        github: new GithubClient(
+          '/api/proxy-github',
+          process.env.REPO_FULL_NAME
+        ),
+      },
       sidebar: { hidden: true },
       toolbar: { hidden: false },
     });
