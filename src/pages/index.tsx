@@ -19,13 +19,15 @@ interface Props {
 }
 
 export default function HomePage(props: Props) {
-  const [, form]: any = useGithubJsonForm(
+  const [values, form]: any = useGithubJsonForm(
     props.home,
     {
       fields: [{ name: 'title', component: 'text' }],
     },
     props.sourceProvider
   );
+
+  console.log(values);
 
   useGithubErrorListener(form);
 
