@@ -9,6 +9,7 @@ import {
   getJsonFile,
   GithubError,
   SourceProviderConnection,
+  getMarkdownFile,
 } from 'next-tinacms-github';
 import { EditLink } from '../components/EditLink';
 import { InlineForm, InlineTextField } from 'react-tinacms-inline';
@@ -16,7 +17,7 @@ import { InlineForm, InlineTextField } from 'react-tinacms-inline';
 interface Props {
   home: any;
   sourceProvider: GithubOptions;
-  editMode: boolean;
+  preview: boolean;
 }
 
 export default function HomePage(props: Props) {
@@ -33,9 +34,9 @@ export default function HomePage(props: Props) {
   return (
     <InlineForm
       form={form}
-      initialStatus={props.editMode ? 'active' : 'inactive'}
+      initialStatus={props.preview ? 'active' : 'inactive'}
     >
-      <EditLink editMode={props.editMode} />
+      <EditLink editMode={props.preview} />
       <InlineTextField name='title' />
     </InlineForm>
   );
@@ -45,71 +46,66 @@ export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
-  const accessToken = previewData?.github_access_token;
-  if (!accessToken) throw new Error();
+  if (preview) {
+    return getGithubStaticProps(preview, {
+      ...previewData,
+      fork_full_name: 'ncphillips/ncphi.com',
+      fileRelativePath: 'src/content/home.json',
+      dataName: 'home',
+    });
+  }
+  return {
+    props: {
+      previewError: null,
+      editMode: false,
+      home: {
+        fileRelativePath: 'src/content/home.json',
+        data: (await import('../content/home.json')).default,
+      },
+    },
+  };
+};
+
+interface PreviewMeta {
+  github_access_token: string;
+  fork_full_name: string;
+  head_branch: string;
+  fileRelativePath: string;
+  dataName?: string;
+  format?: 'markdown' | 'json';
+}
+async function getGithubStaticProps(preview: boolean, options: PreviewMeta) {
+  const accessToken = options?.github_access_token;
   const sourceProvider = {
-    forkFullName: 'ncphillips/ncphi.com',
-    headBranch: previewData?.head_branch || 'master',
+    forkFullName: options?.fork_full_name,
+    headBranch: options?.head_branch || 'master',
   };
   let previewError: GithubError = null;
-  let homeData = {};
-  if (preview) {
-    try {
-      homeData = await getJsonFile(
-        '/src/content/home.json',
-        sourceProvider,
-        accessToken
-      );
-    } catch (e) {
-      if (e instanceof GithubError) {
-        previewError = { ...e }; //workaround since we cant return error as JSON
-      } else {
-        throw e;
-      }
+  let data = {};
+
+  try {
+    const getParsedFile =
+      options?.format === 'markdown' ? getMarkdownFile : getJsonFile;
+
+    data = await getParsedFile(
+      options.fileRelativePath,
+      sourceProvider,
+      accessToken
+    );
+  } catch (e) {
+    if (e instanceof GithubError) {
+      previewError = { ...e }; //workaround since we cant return error as JSON
+    } else {
+      throw e;
     }
-  } else {
-    homeData = {
-      fileRelativePath: 'src/content/home.json',
-      data: (await import('../content/home.json')).default,
-    };
   }
 
   return {
     props: {
-      home: homeData,
+      [options.dataName || 'data']: data,
       previewError: previewError,
       sourceProvider,
-      editMode: !!preview,
+      preview,
     },
   };
-};
-
-interface Response {
-  accessToken: string | null;
-  sourceProviderConnection: SourceProviderConnection | null;
 }
-
-interface PreviewData {
-  fork_full_name: string;
-  head_branch: string;
-  github_access_token: string;
-}
-
-export const getGithubDataFromPreviewProps = (
-  previewData?: PreviewData
-): Response => {
-  if (!previewData) {
-    return {
-      sourceProviderConnection: null,
-      accessToken: null,
-    };
-  }
-
-  return {
-    accessToken: previewData.github_access_token,
-    sourceProviderConnection: {
-      forkFullName: previewData.fork_full_name,
-      headBranch: previewData.head_branch || 'master',
-    },
-  };
-};
