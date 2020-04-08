@@ -11,9 +11,14 @@ const exitEditMode = () => {
   });
 };
 
-export const Layout: FC = ({ children }) => {
+interface Props {
+  error: any;
+}
+
+export const Layout: FC<Props> = ({ children, error }) => {
   return (
     <TinacmsGithubProvider
+      error={error}
       authenticate={() => authenticate('/api/create-github-access-token')}
       enterEditMode={enterEditMode}
       exitEditMode={exitEditMode}

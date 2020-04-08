@@ -24,7 +24,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <TinaProvider cms={this.cms}>
-        <Layout>
+        <Layout error={this.props.pageProps.previewError}>
           <Component {...pageProps} />
         </Layout>
       </TinaProvider>
