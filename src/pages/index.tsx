@@ -11,6 +11,7 @@ import {
   SourceProviderConnection,
 } from 'next-tinacms-github';
 import { EditLink } from '../components/EditLink';
+import { InlineForm, InlineTextField } from 'react-tinacms-inline';
 
 interface Props {
   home: any;
@@ -27,15 +28,13 @@ export default function HomePage(props: Props) {
     props.sourceProvider
   );
 
-  console.log(values);
-
   useGithubErrorListener(form);
 
   return (
-    <div>
+    <InlineForm form={form}>
       <EditLink editMode={props.editMode} />
-      Hello World
-    </div>
+      <InlineTextField name='title' />
+    </InlineForm>
   );
 }
 
@@ -43,7 +42,8 @@ export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
-  const accessToken = previewData?.github_access_token || 'DEFAULT';
+  const accessToken = previewData?.github_access_token;
+  if (!accessToken) throw new Error();
   const sourceProviderConnection = {
     forkFullName:
       previewData?.fork_full_name || 'https://github.com/ncphillips/ncphi.com',
@@ -51,18 +51,25 @@ export const getStaticProps: GetStaticProps = async function ({
   };
   let previewError: GithubError = null;
   let homeData = {};
-  try {
-    homeData = await getJsonFile(
-      'src/content/home.json',
-      sourceProviderConnection,
-      accessToken
-    );
-  } catch (e) {
-    if (e instanceof GithubError) {
-      previewError = { ...e }; //workaround since we cant return error as JSON
-    } else {
-      throw e;
+  if (preview) {
+    try {
+      homeData = await getJsonFile(
+        '/src/content/home.json',
+        sourceProviderConnection,
+        accessToken
+      );
+    } catch (e) {
+      if (e instanceof GithubError) {
+        previewError = { ...e }; //workaround since we cant return error as JSON
+      } else {
+        throw e;
+      }
     }
+  } else {
+    homeData = {
+      fileRelativePath: 'src/content/home.json',
+      data: (await import('../content/home.json')).default,
+    };
   }
 
   return {
