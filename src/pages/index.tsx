@@ -31,7 +31,10 @@ export default function HomePage(props: Props) {
   useGithubErrorListener(form);
 
   return (
-    <InlineForm form={form}>
+    <InlineForm
+      form={form}
+      initialStatus={props.editMode ? 'active' : 'inactive'}
+    >
       <EditLink editMode={props.editMode} />
       <InlineTextField name='title' />
     </InlineForm>
@@ -44,9 +47,8 @@ export const getStaticProps: GetStaticProps = async function ({
 }) {
   const accessToken = previewData?.github_access_token;
   if (!accessToken) throw new Error();
-  const sourceProviderConnection = {
-    forkFullName:
-      previewData?.fork_full_name || 'https://github.com/ncphillips/ncphi.com',
+  const sourceProvider = {
+    forkFullName: 'ncphillips/ncphi.com',
     headBranch: previewData?.head_branch || 'master',
   };
   let previewError: GithubError = null;
@@ -55,7 +57,7 @@ export const getStaticProps: GetStaticProps = async function ({
     try {
       homeData = await getJsonFile(
         '/src/content/home.json',
-        sourceProviderConnection,
+        sourceProvider,
         accessToken
       );
     } catch (e) {
@@ -76,7 +78,7 @@ export const getStaticProps: GetStaticProps = async function ({
     props: {
       home: homeData,
       previewError: previewError,
-      sourceProviderConnection,
+      sourceProvider,
       editMode: !!preview,
     },
   };
