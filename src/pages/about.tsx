@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async function ({
     return getGithubStaticProps(preview, {
       ...previewData,
       fork_full_name: 'ncphillips/ncphi.com',
-      fileRelativePath: 'src/content/home.json',
+      fileRelativePath: 'src/content/about.json',
       dataName: 'home',
     });
   }
@@ -60,8 +60,8 @@ export const getStaticProps: GetStaticProps = async function ({
       previewError: null,
       editMode: false,
       home: {
-        fileRelativePath: 'src/content/home.json',
-        data: (await import('../content/home.json')).default,
+        fileRelativePath: 'src/content/about.json',
+        data: (await import('../content/about.json')).default,
       },
     },
   };
