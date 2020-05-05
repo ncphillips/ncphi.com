@@ -1,9 +1,10 @@
 import Head from "next/head"
 import { GetStaticProps } from "next"
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github"
+import { useGithubJsonForm } from "react-tinacms-github"
 
 export default function Home({ file }) {
-  const data = file.data
+  const [data] = useGithubJsonForm(file, {})
   return (
     <div className="container">
       <Head>
@@ -12,9 +13,7 @@ export default function Home({ file }) {
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className="title">{data.title}</h1>
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
