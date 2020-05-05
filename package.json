@@ -18,6 +18,7 @@
     "tinacms": "^0.19.1"
   },
   "devDependencies": {
+    "@tinacms/webpack-helpers": "^0.1.0",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "hygen-next-tinacms-github": "https://github.com/dwalkr/hygen-next-tinacms-github",
