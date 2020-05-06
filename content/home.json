@@ -1,5 +1,12 @@
 {
   "title": "ncphi.com",
   "description": "I write code and read books",
-  "links": [{ "_template": "link" }]
+  "links": [
+    {
+      "_template": "link",
+      "title": "Docs",
+      "description": "Read the friggin manual",
+      "url": "http://google.com"
+    }
+  ]
 }
