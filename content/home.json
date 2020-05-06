@@ -11,14 +11,14 @@
     {
       "_template": "link",
       "description": "Checkout what I code about.",
-      "url": "http://example.com",
+      "url": "http://github.com/ncphillips",
       "title": "GitHub"
     },
     {
       "_template": "link",
       "title": "Twitter",
       "description": "Checkout what I whine about.",
-      "url": "http://example.com"
+      "url": "http://twitter.com/ncphi"
     },
     {
       "_template": "link",
