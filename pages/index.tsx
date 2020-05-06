@@ -1,7 +1,10 @@
 import Head from "next/head"
 import { GetStaticProps } from "next"
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github"
-import { useGithubJsonForm } from "react-tinacms-github"
+import {
+  useGithubJsonForm,
+  useGithubToolbarPlugins,
+} from "react-tinacms-github"
 import styled from "styled-components"
 import {
   InlineForm,
@@ -80,10 +83,8 @@ const HOME_BLOCKS = {
 
 export default function Home({ file, preview }) {
   const [data, form] = useGithubJsonForm(file, {})
-  console.log({
-    data,
-    values: form.values,
-  })
+
+  useGithubToolbarPlugins()
 
   return (
     <div className="container">
