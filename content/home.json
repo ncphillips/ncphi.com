@@ -4,9 +4,27 @@
   "links": [
     {
       "_template": "link",
-      "title": "Docs",
-      "description": "Read the friggin manual",
-      "url": "http://google.com"
+      "url": "http://google.com",
+      "title": "Blog",
+      "description": "Checkout what I write about."
+    },
+    {
+      "_template": "link",
+      "description": "Checkout what I code about.",
+      "url": "http://example.com",
+      "title": "GitHub"
+    },
+    {
+      "_template": "link",
+      "title": "Twitter",
+      "description": "Checkout what I whine about.",
+      "url": "http://example.com"
+    },
+    {
+      "_template": "link",
+      "title": "Instagram",
+      "description": "Checkout what I eat.",
+      "url": "http://example.com"
     }
   ]
 }
