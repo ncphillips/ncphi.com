@@ -2,9 +2,89 @@ import Head from "next/head"
 import { GetStaticProps } from "next"
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github"
 import { useGithubJsonForm } from "react-tinacms-github"
+import styled from "styled-components"
+import {
+  InlineForm,
+  InlineBlocks,
+  BlocksControls,
+  BlockTextarea,
+  Block,
+  useInlineForm,
+  InlineTextareaField,
+} from "react-tinacms-inline"
 
-export default function Home({ file }) {
-  const [data] = useGithubJsonForm(file, {})
+const HOME_BLOCKS = {
+  link: {
+    template: {
+      type: "link",
+      label: "Link",
+      fields: [
+        {
+          name: "url",
+          label: "URL",
+          component: "text",
+        },
+      ],
+      defaultItem: {
+        title: "Link",
+        description: "Some descriptive text.",
+        url: "http://example.com",
+      },
+    },
+    Component: styled(({ index, data, className }) => {
+      const { status } = useInlineForm()
+      const url = status === "inactive" ? data.url : undefined
+      return (
+        <a href={url} className={className}>
+          <BlocksControls index={index}>
+            <h3>
+              <BlockTextarea name="title" />
+            </h3>
+            <p>
+              <BlockTextarea name="description" />
+            </p>
+          </BlocksControls>
+        </a>
+      )
+    })`
+      margin: 1rem;
+      flex-basis: 45%;
+      padding: 1.5rem;
+      text-align: left;
+      color: inherit;
+      text-decoration: none;
+      border: 1px solid #eaeaea;
+      border-radius: 10px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+
+      :hover,
+      :focus,
+      :active {
+        color: #0070f3;
+        border-color: #0070f3;
+      }
+
+      h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.25rem;
+        line-height: 1.5;
+      }
+    `,
+  } as Block,
+}
+
+export default function Home({ file, preview }) {
+  const [data, form] = useGithubJsonForm(file, {})
+  console.log({
+    data,
+    values: form.values,
+  })
+
   return (
     <div className="container">
       <Head>
@@ -13,41 +93,19 @@ export default function Home({ file }) {
       </Head>
 
       <main>
-        <h1 className="title">{data.title}</h1>
+        <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
+          <h1 className="title">
+            <InlineTextareaField name="title" />
+          </h1>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+          <p className="description">
+            <InlineTextareaField name="description" />
+          </p>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+          <div className="grid">
+            <InlineBlocks name="links" blocks={HOME_BLOCKS} />
+          </div>
+        </InlineForm>
       </main>
 
       <footer>

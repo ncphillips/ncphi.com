@@ -33,7 +33,7 @@ export default class Site extends App {
        *    unless we're in Preview/Edit Mode
        */
       sidebar: {
-        hidden: !props.pageProps.preview,
+        hidden: true,
       },
       toolbar: {
         hidden: !props.pageProps.preview,
