@@ -85,8 +85,22 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
   const github = useGithubEditing()
 
   return (
-    <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
-      {editMode ? "Exit Edit Mode" : "Edit This Site"}
-    </button>
+    <div className="edit-wrap">
+      <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
+        {editMode ? "Click to Exit" : "Click to Edit"}
+      </button>
+      <style jsx>{`
+        .edit-wrap {
+          position: absolute;
+          bottom: 2rem;
+          left: 2rem;
+        }
+        button {
+          border: none;
+          background: transparent;
+          color: inherit;
+        }
+      `}</style>
+    </div>
   )
 }
