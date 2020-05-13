@@ -1,13 +1,13 @@
 export function Footer() {
   return (
-    <>
+    <div>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by <b>TinaCMS</b> +
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
@@ -20,9 +20,20 @@ export function Footer() {
           justify-content: center;
           align-items: center;
         }
-
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
         footer img {
           margin-left: 0.5rem;
+        }
+        footer b {
+          padding-left: 0.2rem;
+          padding-right: 0.5rem;
+        }
+
+        .logo {
+          height: 1em;
         }
 
         footer a {
@@ -31,6 +42,6 @@ export function Footer() {
           align-items: center;
         }
       `}</style>
-    </>
+    </div>
   )
 }

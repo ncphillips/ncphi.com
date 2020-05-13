@@ -12,6 +12,7 @@ import {
 } from "react-tinacms-inline"
 import { HOME_BLOCKS } from "../blocks/home"
 import { GlobalStyles } from "../components/global-styles"
+import { Footer } from "../components/footer"
 
 export default function Home({ file, preview }) {
   const [, form] = useGithubJsonForm(file, {})
@@ -39,6 +40,7 @@ export default function Home({ file, preview }) {
             <InlineBlocks name="links" blocks={HOME_BLOCKS} />
           </div>
         </InlineForm>
+        <Footer />
       </main>
 
       <style jsx>{`
@@ -58,22 +60,6 @@ export default function Home({ file, preview }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
         }
 
         .title {
@@ -109,10 +95,6 @@ export default function Home({ file, preview }) {
 
           max-width: 800px;
           margin-top: 3rem;
-        }
-
-        .logo {
-          height: 1em;
         }
 
         @media (max-width: 600px) {
