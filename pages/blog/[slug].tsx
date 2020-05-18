@@ -69,10 +69,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     fallback: false,
-    paths: files.map((file: string) => ({
+    paths: filterBy.published(files).map((file: string) => ({
       params: { slug: path.basename(file, ".md") },
     })),
   }
+}
+
+const filterBy = {
+  published(files: string[]): string[] {
+    return files.filter((file) => {
+      const {
+        data: { frontmatter },
+      } = readLocalMarkdownFile(file)
+
+      return !frontmatter.draft
+    })
+  },
 }
 
 export default BlogPostView

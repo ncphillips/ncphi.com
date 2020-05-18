@@ -1,5 +1,6 @@
 ---
 title: How to build a blog using TinaCMS & GitHub
+draft: true
 ---
 
 ### 1. Create a couple Markdown files in our blog.
