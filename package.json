@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "fast-glob": "^3.2.2",
     "next": "9.3.6",
     "next-tinacms-github": "^0.1.0-canary4.1",
     "react": "16.13.1",
