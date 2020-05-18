@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage, GetStaticPaths } from "next"
+import { NextPage, GetStaticPaths } from "next"
 import {
   getGithubPreviewProps,
   GithubPreviewProps,
@@ -7,6 +7,13 @@ import {
 } from "next-tinacms-github"
 import ReactMarkdown from "react-markdown"
 import { readLocalMarkdownFile } from "../../lib/read-local-markdown-file"
+import { useGithubMarkdownForm } from "react-tinacms-github"
+import {
+  InlineWysiwyg,
+  InlineForm,
+  InlineTextareaField,
+} from "react-tinacms-inline"
+import { usePlugin } from "tinacms"
 
 interface BlogFrontmatter {
   title: string
@@ -16,12 +23,18 @@ type BlogPost = MarkdownData<BlogFrontmatter>
 
 type Props = GithubPreviewProps<BlogPost>["props"]
 
-const BlogPostView: NextPage<Props> = ({ file }) => {
+const BlogPostView: NextPage<Props> = ({ file, preview }) => {
+  const [, form] = useGithubMarkdownForm(file)
+  usePlugin(form)
   return (
-    <div>
-      <h1>{file.data.frontmatter.title} </h1>
-      <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
-    </div>
+    <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
+      <h1>
+        <InlineTextareaField name="frontmatter.title" />
+      </h1>
+      <InlineWysiwyg name="markdownBody">
+        <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
+      </InlineWysiwyg>
+    </InlineForm>
   )
 }
 
