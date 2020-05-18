@@ -14,6 +14,7 @@ import {
   InlineTextareaField,
 } from "react-tinacms-inline"
 import { usePlugin } from "tinacms"
+import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
 
 interface BlogFrontmatter {
   title: string
@@ -62,33 +63,14 @@ export async function getStaticProps({ preview, previewData, params }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const fg = require("fast-glob")
-  const path = require("path")
-
-  let files: string[] = await fg(`./content/blog/**/*.md`)
-
-  if (process.env.NODE_ENV === "production") {
-    files = filterBy.published(files)
-  }
+  const posts = await listMarkdownPosts()
 
   return {
     fallback: false,
-    paths: files.map((file) => ({
-      params: { slug: path.basename(file, ".md") },
+    paths: posts.map((file) => ({
+      params: { slug: file.slug },
     })),
   }
-}
-
-const filterBy = {
-  published(files: string[]): string[] {
-    return files.filter((file) => {
-      const {
-        data: { frontmatter },
-      } = readLocalMarkdownFile(file)
-
-      return !frontmatter.draft
-    })
-  },
 }
 
 export default BlogPostView
