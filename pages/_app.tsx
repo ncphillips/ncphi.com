@@ -92,12 +92,12 @@ export const EditLink = ({ editMode }: EditLinkProps) => {
       <style jsx>{`
         .edit-wrap {
           position: absolute;
-          bottom: 2rem;
-          left: 2rem;
+          top: 5rem;
+          right: 2rem;
         }
         button {
           border: none;
-          background: transparent;
+          background: white;
           color: inherit;
         }
       `}</style>
