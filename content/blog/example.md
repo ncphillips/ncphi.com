@@ -199,6 +199,8 @@ yarn add gray-matter
 
 Now we can get rid of the `DUMMY_FILE` and actually read the local markdown file.
 
+**pages/blog/[slug].tsx**
+
 ```diff
 export async function getStaticProps({ preview, previewData, params }) {
   const slug = params.slug as string
@@ -248,4 +250,22 @@ export async function getStaticProps({ preview, previewData, params }) {
 +     },
 +   }
 + }
+```
+
+### 7. Rendering Markdown Content
+
+**pages/blog/[slug].tsx**
+
+```diff
++ import ReactMarkdown from "react-markdown"
+
+const BlogPostView: NextPage<Props> = ({ file }) => {
+  return (
+    <div>
+      <h1>{file.data.frontmatter.title} </h1>
+-     <p>{file.data.markdownBody}</p>
++     <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
+    </div>
+  )
+}
 ```

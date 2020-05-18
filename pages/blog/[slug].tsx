@@ -5,6 +5,7 @@ import {
   parseMarkdown,
   MarkdownData,
 } from "next-tinacms-github"
+import ReactMarkdown from "react-markdown"
 import { readLocalMarkdownFile } from "../../lib/read-local-markdown-file"
 
 interface BlogFrontmatter {
@@ -19,7 +20,7 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
   return (
     <div>
       <h1>{file.data.frontmatter.title} </h1>
-      <p>{file.data.markdownBody}</p>
+      <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
     </div>
   )
 }
