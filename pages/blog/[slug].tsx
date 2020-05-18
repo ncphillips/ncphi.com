@@ -65,11 +65,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const fg = require("fast-glob")
   const path = require("path")
 
-  const files = await fg(`./content/blog/**/*.md`)
+  let files: string[] = await fg(`./content/blog/**/*.md`)
+
+  if (process.env.NODE_ENV === "production") {
+    files = filterBy.published(files)
+  }
 
   return {
     fallback: false,
-    paths: filterBy.published(files).map((file: string) => ({
+    paths: files.map((file) => ({
       params: { slug: path.basename(file, ".md") },
     })),
   }
