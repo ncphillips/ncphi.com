@@ -5,6 +5,7 @@ import {
   parseMarkdown,
   MarkdownData,
 } from "next-tinacms-github"
+import { readLocalMarkdownFile } from "../../lib/read-local-markdown-file"
 
 interface BlogFrontmatter {
   title: string
@@ -23,22 +24,14 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
   )
 }
 
-const DUMMY_FILE = {
-  data: {
-    frontmatter: {
-      title: "Hello World",
-    },
-    markdownBody: "Nothing to see here.",
-  },
-}
-
 export async function getStaticProps({ preview, previewData, params }) {
   const slug = params.slug as string
+  const fileRelativePath = `content/blog/${slug}.md`
 
   if (preview) {
     return await getGithubPreviewProps({
       ...previewData,
-      fileRelativePath: `content/blog/${slug}.md`,
+      fileRelativePath,
       parse: parseMarkdown,
     })
   }
@@ -48,7 +41,7 @@ export async function getStaticProps({ preview, previewData, params }) {
       preview: false,
       repoFullName: "ncphillips/ncphi.com",
       branch: "master",
-      file: DUMMY_FILE, // TODO: Load real content.
+      file: readLocalMarkdownFile(fileRelativePath),
       error: null,
     },
   }

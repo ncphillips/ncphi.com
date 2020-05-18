@@ -103,6 +103,10 @@ Let's fix that!
 
 To list all the posts, we need to discover them dynamically. We will use `fast-glob`, a library that returns a list of filenames for a given path. Then we'll use `path.basename` to grab strip the directory path and the extension from each file. This "basename" will be used as our slug.
 
+```bash
+yarn add fast-glob
+```
+
 **pages/blog/[slug].tsx**
 
 ```tsx
@@ -135,10 +139,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ preview, previewData, params }) {
   const slug = params.slug as string
 
++ const fileRelativePath = `content/blog/${slug}.md`,
 + if (preview) {
 +   return await getGithubPreviewProps({
 +     ...previewData,
-+     fileRelativePath: `content/blog/${slug}.md`,
++     fileRelativePath,
 +     parse: parseMarkdown,
 +   })
 + }
@@ -187,3 +192,60 @@ Going to the page in preview mode will now show the content from GitHub.
 But we skipped a step. We need to show the content when we're not in preview mode.
 
 ### 6. Loading Content From Disk
+
+```bash
+yarn add gray-matter
+```
+
+Now we can get rid of the `DUMMY_FILE` and actually read the local markdown file.
+
+```diff
+export async function getStaticProps({ preview, previewData, params }) {
+  const slug = params.slug as string
+  const fileRelativePath = `content/blog/${slug}.md`
+
+  if (preview) {
+    return await getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath,
+      parse: parseMarkdown,
+    })
+  }
+
+  return {
+    props: {
+      preview: false,
+      repoFullName: "ncphillips/ncphi.com",
+      branch: "master",
+-      file: readLocalMarkdownFile(fileRelativePath),
++      file: DUMMY_FILE,
+      error: null,
+    },
+  }
+}
+
+- const DUMMY_FILE = {
+-   data: {
+-     frontmatter: {
+-       title: "Hello World",
+-     },
+-     markdownBody: "Nothing to see here.",
+-   },
+- }
+
++ const readLocalMarkdownFile = (filePath: string) => {
++   const fs = require("fs")
++   const path = require("path")
++   const matter = require("gray-matter")
++   const fileContent = fs.readFileSync(path.resolve("./", filePath))
++   const { data: frontmatter, content: markdownBody } = matter(fileContent)
++
++   return {
++     fileRelativePath: filePath,
++     data: {
++       frontmatter,
++       markdownBody,
++     },
++   }
++ }
+```
