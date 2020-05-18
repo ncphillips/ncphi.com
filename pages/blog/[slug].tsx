@@ -1,28 +1,55 @@
 import { GetStaticProps, NextPage, GetStaticPaths } from "next"
+import {
+  getGithubPreviewProps,
+  GithubPreviewProps,
+  parseMarkdown,
+  MarkdownData,
+} from "next-tinacms-github"
 
-interface Props {
-  slug: string
+interface BlogFrontmatter {
+  title: string
 }
 
-const BlogPostView: NextPage<Props> = (props) => {
+type BlogPost = MarkdownData<BlogFrontmatter>
+
+type Props = GithubPreviewProps<BlogPost>["props"]
+
+const BlogPostView: NextPage<Props> = ({ file }) => {
   return (
     <div>
-      <h1>{props.slug} </h1>
-      <p>Body goes here</p>
+      <h1>{file.data.frontmatter.title} </h1>
+      <p>{file.data.markdownBody}</p>
     </div>
   )
 }
 
-interface StaticProps {
-  slug: string
+const DUMMY_FILE = {
+  data: {
+    frontmatter: {
+      title: "Hello World",
+    },
+    markdownBody: "Nothing to see here.",
+  },
 }
 
-export const getStaticProps: GetStaticProps<StaticProps> = async (ctx) => {
-  const slug = ctx.params.slug as string
+export async function getStaticProps({ preview, previewData, params }) {
+  const slug = params.slug as string
+
+  if (preview) {
+    return await getGithubPreviewProps({
+      ...previewData,
+      fileRelativePath: `content/blog/${slug}.md`,
+      parse: parseMarkdown,
+    })
+  }
 
   return {
     props: {
-      slug,
+      preview: false,
+      repoFullName: "ncphillips/ncphi.com",
+      branch: "master",
+      file: DUMMY_FILE, // TODO: Load real content.
+      error: null,
     },
   }
 }
