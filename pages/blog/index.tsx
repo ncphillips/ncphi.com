@@ -1,4 +1,6 @@
 import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
+import { GetStaticProps } from "next"
+import Link from "next/link"
 
 export default function Blog({ posts }) {
   return (
@@ -11,15 +13,19 @@ export default function Blog({ posts }) {
         </>
       )}
       {posts.map((post) => (
-        <a href={`/blog/${post.slug}`}>
+        <Link href={`/blog/${post.slug}`}>
           <li>{post.title}</li>
-        </a>
+        </Link>
       ))}
     </div>
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async function ({ preview }) {
+  if (preview) {
+    // TODO: Load list of files from GitHub
+  }
+
   const posts = await listMarkdownPosts()
 
   return {
