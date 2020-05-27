@@ -29,12 +29,20 @@ const BlogPostView: NextPage<Props> = ({ file, preview }) => {
   usePlugin(form)
   return (
     <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
-      <h1>
-        <InlineTextareaField name="frontmatter.title" />
-      </h1>
-      <InlineWysiwyg name="markdownBody">
-        <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
-      </InlineWysiwyg>
+      <section>
+        <h1>
+          <InlineTextareaField name="frontmatter.title" />
+        </h1>
+        <InlineWysiwyg name="markdownBody">
+          <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
+        </InlineWysiwyg>
+      </section>
+      <style jsx>{`
+        section {
+          margin: 0 auto;
+          max-width: 800px;
+        }
+      `}</style>
     </InlineForm>
   )
 }
