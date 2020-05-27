@@ -15,6 +15,7 @@ import {
 } from "react-tinacms-inline"
 import { usePlugin } from "tinacms"
 import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
+import { Layout } from "../../components/layout"
 
 interface BlogFrontmatter {
   title: string
@@ -28,22 +29,16 @@ const BlogPostView: NextPage<Props> = ({ file, preview }) => {
   const [, form] = useGithubMarkdownForm(file)
   usePlugin(form)
   return (
-    <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
-      <section>
+    <Layout>
+      <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
         <h1>
           <InlineTextareaField name="frontmatter.title" />
         </h1>
         <InlineWysiwyg name="markdownBody">
           <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
         </InlineWysiwyg>
-      </section>
-      <style jsx>{`
-        section {
-          margin: 0 auto;
-          max-width: 800px;
-        }
-      `}</style>
-    </InlineForm>
+      </InlineForm>
+    </Layout>
   )
 }
 
