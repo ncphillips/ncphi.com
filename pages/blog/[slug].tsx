@@ -9,10 +9,10 @@ import ReactMarkdown from "react-markdown"
 import { readLocalMarkdownFile } from "../../lib/read-local-markdown-file"
 import { useGithubMarkdownForm } from "react-tinacms-github"
 import { InlineForm, InlineTextareaField } from "react-tinacms-inline"
-import { InlineWysiwyg } from "react-tinacms-editor"
 import { usePlugin } from "tinacms"
 import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
 import { Layout } from "../../components/layout"
+import { InlineWysiwyg } from "../../components/inline-editor"
 
 interface BlogFrontmatter {
   title: string

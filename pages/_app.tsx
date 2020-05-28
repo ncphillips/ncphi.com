@@ -15,6 +15,7 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
+      enabled: props.pageProps.preview,
       apis: {
         /**
          * 2. Register the GithubClient
@@ -36,7 +37,7 @@ export default class Site extends App {
         hidden: true,
       },
       toolbar: {
-        hidden: !props.pageProps.preview,
+        hidden: false,
       },
     })
   }
