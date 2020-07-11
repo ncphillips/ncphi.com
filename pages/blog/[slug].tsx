@@ -22,12 +22,12 @@ type BlogPost = MarkdownData<BlogFrontmatter>
 
 type Props = GithubPreviewProps<BlogPost>["props"]
 
-const BlogPostView: NextPage<Props> = ({ file, preview }) => {
+const BlogPostView: NextPage<Props> = ({ file }) => {
   const [, form] = useGithubMarkdownForm(file)
   usePlugin(form)
   return (
     <Layout>
-      <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
+      <InlineForm form={form}>
         <h1>
           <InlineTextareaField name="frontmatter.title" />
         </h1>

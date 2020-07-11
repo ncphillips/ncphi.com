@@ -1,25 +1,21 @@
 import styled from "styled-components"
-import {
-  BlocksControls,
-  BlockTextarea,
-  Block,
-  useInlineForm,
-} from "react-tinacms-inline"
+import { BlocksControls, InlineTextarea, Block } from "react-tinacms-inline"
+import { useCMS } from "tinacms"
 
 const Link = styled(({ index, data, className }) => {
-  const { status } = useInlineForm()
-  const url = status === "inactive" ? data.url : undefined
+  const cms = useCMS()
+  const url = cms.enabled ? data.url : undefined
   return (
-    <a href={url} className={className}>
-      <BlocksControls index={index}>
+    <BlocksControls index={index}>
+      <a href={url} className={className}>
         <h3>
-          <BlockTextarea name="title" />
+          <InlineTextarea name="title" />
         </h3>
         <p>
-          <BlockTextarea name="description" />
+          <InlineTextarea name="description" />
         </p>
-      </BlocksControls>
-    </a>
+      </a>
+    </BlocksControls>
   )
 })`
   margin: 1rem;
@@ -53,8 +49,7 @@ const Link = styled(({ index, data, className }) => {
 
 const link: Block = {
   template: {
-    // TODO: This probably shouldn't be required?
-    key: undefined,
+    // @ts-ignore
     type: "link",
     label: "Link",
     fields: [

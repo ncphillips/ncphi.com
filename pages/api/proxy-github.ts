@@ -1,3 +1,3 @@
-import { apiProxy } from 'next-tinacms-github'
+import { apiProxy } from "next-tinacms-github"
 
-export default apiProxy
+export default apiProxy("hello-world")

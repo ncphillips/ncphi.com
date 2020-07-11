@@ -1,3 +1,8 @@
-import { previewHandler } from 'next-tinacms-github'
+import { previewHandler } from "next-tinacms-github"
 
-export default previewHandler
+const preview = previewHandler("hello-world")
+
+export default (req, res) => {
+  console.log(preview)
+  return preview(req, res)
+}

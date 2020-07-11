@@ -1,44 +1,29 @@
 import App from "next/app"
-import { TinaCMS, TinaProvider } from "tinacms"
-import {
-  useGithubEditing,
-  GithubClient,
-  TinacmsGithubProvider,
-} from "react-tinacms-github"
+import { TinaCMS, TinaProvider, useCMS } from "tinacms"
+import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github"
 
 export default class Site extends App {
   cms: TinaCMS
 
   constructor(props) {
     super(props)
+    console.log(props.pageProps)
+    const enabled = props.pageProps.preview
     /**
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
-      enabled: props.pageProps.preview,
+      enabled,
       apis: {
-        /**
-         * 2. Register the GithubClient
-         */
         github: new GithubClient({
           proxy: "/api/proxy-github",
           authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
           baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
-          //@ts-ignore
           authScope: "repo",
         }),
       },
-      /**
-       * 3. Hide the Sidebar & Toolbar
-       *    unless we're in Preview/Edit Mode
-       */
-      sidebar: {
-        hidden: true,
-      },
-      toolbar: {
-        hidden: false,
-      },
+      toolbar: enabled,
     })
   }
 
@@ -50,9 +35,8 @@ export default class Site extends App {
        */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
-          editMode={pageProps.preview}
-          enterEditMode={enterEditMode}
-          exitEditMode={exitEditMode}
+          onLogin={enterEditMode}
+          onLogout={exitEditMode}
           error={pageProps.error}
         >
           {/**
@@ -66,12 +50,23 @@ export default class Site extends App {
   }
 }
 
-const enterEditMode = () => {
-  return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname
-  })
-}
+const enterEditMode = async () => {
+  const token = localStorage.getItem("tinacms-github-token") || null
+  const headers = new Headers()
 
+  if (token) {
+    headers.append("Authorization", "Bearer " + token)
+  }
+
+  const response = await fetch(`/api/preview`, { headers })
+
+  if (response.status === 200) {
+    window.location.reload()
+  } else {
+    const data = await response.json()
+    throw new Error(data.message)
+  }
+}
 const exitEditMode = () => {
   return fetch(`/api/reset-preview`).then(() => {
     window.location.reload()
@@ -83,11 +78,11 @@ export interface EditLinkProps {
 }
 
 export const EditLink = ({ editMode }: EditLinkProps) => {
-  const github = useGithubEditing()
+  const cms = useCMS()
 
   return (
     <div className="edit-wrap">
-      <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
+      <button onClick={() => (editMode ? cms.disable() : cms.enable())}>
         {editMode ? "Click to Exit" : "Click to Edit"}
       </button>
       <style jsx>{`

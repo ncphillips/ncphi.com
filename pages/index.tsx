@@ -14,7 +14,7 @@ import { HOME_BLOCKS } from "../blocks/home"
 import { GlobalStyles } from "../components/global-styles"
 import { Footer } from "../components/footer"
 
-export default function Home({ file, preview }) {
+export default function Home({ file }) {
   const [, form] = useGithubJsonForm(file, {})
 
   useGithubToolbarPlugins()
@@ -27,7 +27,7 @@ export default function Home({ file, preview }) {
       </Head>
 
       <main>
-        <InlineForm form={form} initialStatus={preview ? "active" : "inactive"}>
+        <InlineForm form={form}>
           <h1 className="title">
             <InlineTextareaField name="title" />
           </h1>
@@ -36,9 +36,7 @@ export default function Home({ file, preview }) {
             <InlineTextareaField name="description" />
           </p>
 
-          <div className="grid">
-            <InlineBlocks name="links" blocks={HOME_BLOCKS} />
-          </div>
+          <InlineBlocks name="links" blocks={HOME_BLOCKS} className="grid" />
         </InlineForm>
         <Footer />
       </main>
