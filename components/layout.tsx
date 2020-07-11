@@ -8,7 +8,7 @@ export function Layout({ title, description, children }) {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={title} key="title" />
-        <meta property="description" content={description} />
+        <meta name="description" content={description} />
       </Head>
       <header>
         <nav>
