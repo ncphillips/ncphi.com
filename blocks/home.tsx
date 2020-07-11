@@ -7,14 +7,16 @@ const Link = styled(({ index, data, className }) => {
   const url = cms.enabled ? data.url : undefined
   return (
     <BlocksControls index={index}>
-      <a href={url} className={className}>
-        <h3>
-          <InlineTextarea name="title" />
-        </h3>
-        <p>
-          <InlineTextarea name="description" />
-        </p>
-      </a>
+      <div className={className}>
+        <a href={url}>
+          <h3>
+            <InlineTextarea name="title" />
+          </h3>
+          <p>
+            <InlineTextarea name="description" />
+          </p>
+        </a>
+      </div>
     </BlocksControls>
   )
 })`
