@@ -30,7 +30,10 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
   const [post, form] = useGithubMarkdownForm(file)
   usePlugin(form)
   return (
-    <Layout title={post.title} description={post.description}>
+    <Layout
+      title={post.frontmatter.title}
+      description={post.frontmatter.description}
+    >
       <InlineForm form={form}>
         <InlineGroup
           name="frontmatter"
