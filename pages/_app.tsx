@@ -1,6 +1,7 @@
 import App from "next/app"
 import { TinaCMS, TinaProvider, useCMS } from "tinacms"
 import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github"
+import { GoogleAnalytics } from "../lib/use-react-ga"
 
 export default class Site extends App {
   cms: TinaCMS
@@ -39,6 +40,7 @@ export default class Site extends App {
           onLogout={exitEditMode}
           error={pageProps.error}
         >
+          <GoogleAnalytics id="UA-86782303-1" />
           {/**
            * 5. Add a button for entering Preview/Edit Mode
            */}
