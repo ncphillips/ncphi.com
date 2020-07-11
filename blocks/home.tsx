@@ -4,7 +4,7 @@ import { useCMS } from "tinacms"
 
 const Link = styled(({ index, data, className }) => {
   const cms = useCMS()
-  const url = cms.enabled ? data.url : undefined
+  const url = !cms.enabled ? data.url : undefined
   return (
     <BlocksControls index={index}>
       <div className={className}>
