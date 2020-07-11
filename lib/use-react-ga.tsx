@@ -6,7 +6,9 @@ export function useReactGA(id: string) {
   const router = useRouter()
 
   useEffect(() => {
-    ReactGA.initialize(id)
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.initialize(id)
+    }
   }, [])
 
   useEffect(() => {
