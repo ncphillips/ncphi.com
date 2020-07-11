@@ -1,8 +1,15 @@
 import Link from "next/link"
+import Head from "next/head"
 
-export function Layout({ children }) {
+export function Layout({ title, description, children }) {
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={title} key="title" />
+        <meta property="description" content={description} />
+      </Head>
       <header>
         <nav>
           <Link href="/">

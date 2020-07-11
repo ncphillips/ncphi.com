@@ -8,7 +8,11 @@ import {
 import ReactMarkdown from "react-markdown"
 import { readLocalMarkdownFile } from "../../lib/read-local-markdown-file"
 import { useGithubMarkdownForm } from "react-tinacms-github"
-import { InlineForm, InlineTextareaField } from "react-tinacms-inline"
+import {
+  InlineForm,
+  InlineTextareaField,
+  InlineGroup,
+} from "react-tinacms-inline"
 import { usePlugin } from "tinacms"
 import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
 import { Layout } from "../../components/layout"
@@ -23,14 +27,30 @@ type BlogPost = MarkdownData<BlogFrontmatter>
 type Props = GithubPreviewProps<BlogPost>["props"]
 
 const BlogPostView: NextPage<Props> = ({ file }) => {
-  const [, form] = useGithubMarkdownForm(file)
+  const [post, form] = useGithubMarkdownForm(file)
   usePlugin(form)
   return (
-    <Layout>
+    <Layout title={post.title} description={post.description}>
       <InlineForm form={form}>
-        <h1>
-          <InlineTextareaField name="frontmatter.title" />
-        </h1>
+        <InlineGroup
+          name="frontmatter"
+          fields={[
+            {
+              name: "title",
+              component: "text",
+              label: "Title",
+            },
+            {
+              name: "description",
+              component: "textarea",
+              label: "Description",
+            },
+          ]}
+        >
+          <h1>
+            <InlineTextareaField name="title" />
+          </h1>
+        </InlineGroup>
         <InlineWysiwyg name="markdownBody">
           <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
         </InlineWysiwyg>

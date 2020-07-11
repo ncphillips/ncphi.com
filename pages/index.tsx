@@ -15,15 +15,17 @@ import { GlobalStyles } from "../components/global-styles"
 import { Footer } from "../components/footer"
 
 export default function Home({ file }) {
-  const [, form] = useGithubJsonForm(file, {})
+  const [post, form] = useGithubJsonForm(file, {})
 
   useGithubToolbarPlugins()
 
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>{post.title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={post.title} key="title" />
+        <meta property="description" content={post.description} />
       </Head>
 
       <main>
