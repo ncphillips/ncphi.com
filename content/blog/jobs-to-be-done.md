@@ -59,5 +59,5 @@ These two ideas are perfectly compatible, however the Theory of Constraints (ToC
 
 ## Resources
 
-Competing Against Luck
-Intercom on Jobs to Be Done
+- Competing Against Luck
+- Intercom on Jobs to Be Done
