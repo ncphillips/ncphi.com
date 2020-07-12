@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^9.4.4",
     "dotenv": "^8.2.0",
     "fast-glob": "^3.2.2",
     "next": "9.3.6",

@@ -1,8 +1,12 @@
 const { aliasTinaDev } = require("@tinacms/webpack-helpers")
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+})
+
 require("dotenv").config()
 
-module.exports = {
+const config = {
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     REPO_FULL_NAME: process.env.REPO_FULL_NAME,
@@ -20,3 +24,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = withBundleAnalyzer(config)
