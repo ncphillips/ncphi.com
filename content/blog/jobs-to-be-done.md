@@ -51,7 +51,7 @@ These two ideas are perfectly compatible, however the Theory of Constraints (ToC
 * Look for ways that people use your product that you never intended
 * You need to look at the context of a job to really understand them. The functional component is obviously important, but so are the emotional and social aspects of the job.
 * "You can't do design requirements in a conference room"
-* It's important to make it clear what job you product is meant to be hired for. If you don't, people will come back and claim that you have a crummy product.
+* It's important to make it clear what job your product is meant to be hired for. If you don't, people will come back and claim that you have a crummy product.
 * It's not so much the specific tactics you use as the questions that you try to answer
 * Look for the non-consumption situations; for places where people opt to not hire anything for a job because all the existing candidates are inadequate
 * Sales data is incomplete. The purchase is only half
