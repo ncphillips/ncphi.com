@@ -54,7 +54,7 @@ These two ideas are perfectly compatible, however the Theory of Constraints (ToC
 * It's important to make it clear what job your product is meant to be hired for. If you don't, people will come back and claim that you have a crummy product.
 * It's not so much the specific tactics you use as the questions that you try to answer
 * Look for the non-consumption situations; for places where people opt to not hire anything for a job because all the existing candidates are inadequate
-* Sales data is incomplete. The purchase is only half
+* Sales data is incomplete. The purchase is the initial hire, but customer's re-hire your product every time they use it. A product that is bought but never used will not be terribly successful. Just ask the Italian Seasoning that has been sitting unopened in my cupboard for the last 4 years.
 
 ## Resources
 
