@@ -8,7 +8,6 @@ export default class Site extends App {
 
   constructor(props) {
     super(props)
-    console.log(props.pageProps)
     const enabled = props.pageProps.preview
     /**
      * 1. Create the TinaCMS instance
@@ -17,11 +16,11 @@ export default class Site extends App {
       enabled,
       apis: {
         github: new GithubClient({
+          authScope: "repo",
           proxy: "/api/proxy-github",
           authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
           baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
-          authScope: "repo",
         }),
       },
       toolbar: enabled,
