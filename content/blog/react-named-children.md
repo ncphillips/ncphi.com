@@ -1,6 +1,10 @@
 ---
 title: Separate Concerns with the React 'Named Children' Pattern
 category: react
+author: Nolan Phillips
+description: >-
+  Props and children are different things, but when the a component takes multiple children
+  things can get awkward. The Named Children pattern helps us deal with this.
 ---
 
 Components that wrap other content usually use the `children` pattern. For example, if we want to put a message inside of a `<Card>` we would do:
