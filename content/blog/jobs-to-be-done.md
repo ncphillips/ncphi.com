@@ -2,6 +2,7 @@
 title: What is Jobs to be Done?
 draft: false
 category: product management
+author: Nolan Phillips
 ---
 
 Jobs to be Done is an approach to thinking about the role products play in people's lives. I think it's a great idea, however I dislike most what's written on the topic. Personally I find them long winded in their attempts at describing Jobs to be Done and why it's a useful way of framing your conversations. As such, I've written this document that lists questions I've had about Jobs and the answers I discovered. There is some resources listed at the bottom of this document if you would like to dig deeper.
