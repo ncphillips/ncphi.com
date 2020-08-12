@@ -34,38 +34,65 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
       title={post.frontmatter.title}
       description={post.frontmatter.description}
     >
-      <div className="container pt-4 pb-4">
-        <div className="row justify-content-center">
-          <div className="col-md-12 col-lg-8">
-            <article className="article-post">
-              <InlineForm form={form}>
-                <InlineGroup
-                  name="frontmatter"
-                  fields={[
-                    {
-                      name: "title",
-                      component: "text",
-                      label: "Title",
-                    },
-                    {
-                      name: "description",
-                      component: "textarea",
-                      label: "Description",
-                    },
-                  ]}
-                >
-                  <h1>
-                    <InlineTextareaField name="title" />
-                  </h1>
-                </InlineGroup>
+      <InlineForm form={form}>
+        <div className="container">
+          <div className="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+            <InlineGroup
+              name="frontmatter"
+              fields={[
+                { name: "title", component: "text" },
+                { name: "description", component: "textarea" },
+                { name: "category", component: "text" },
+              ]}
+            >
+              <div className="h-100 tofront">
+                <div className="row justify-content-center">
+                  <div className="col-md-2 pt-2 pb-2 pr-2 align-self-center" />
+                  <div className="col-md-10 pt-10 pb-10 pr-10 align-self-center">
+                    <p className="text-uppercase font-weight-bold">
+                      <div className="text-danger">
+                        {form.values.frontmatter.category}
+                      </div>
+                    </p>
+                    <h1 className="display-4 secondfont mb-3 font-weight-bold">
+                      <InlineTextareaField name="title" />
+                    </h1>
+                    <p className="mb-3">{}</p>
+                    <div className="d-flex align-items-center">
+                      {/* <img
+                      className="rounded-circle"
+                      src="assets/img/demo/avatar2.jpg"
+                      width="70"
+                    /> */}
+                      <small className="ml-2">
+                        by {"Nolan Phillips"}
+                        {/* <InlineTextareaField name="frontmatter.author" /> */}
+                        <span className="text-muted d-block">
+                          A few hours ago &middot; 5 min. read
+                        </span>
+                      </small>
+                    </div>
+                  </div>
+                  {/* <div className="col-md-6 pr-0">
+                  <img src="./assets/img/demo/intro.jpg" />
+                </div> */}
+                </div>
+              </div>
+            </InlineGroup>
+          </div>
+        </div>
+        <div className="container pt-4 pb-4">
+          <div className="row justify-content-center">
+            <div className="col-md-12 col-lg-8">
+              <article className="article-post">
                 <InlineWysiwyg name="markdownBody">
                   <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
                 </InlineWysiwyg>
-              </InlineForm>
-            </article>
+              </article>
+            </div>
           </div>
         </div>
-      </div>
+      </InlineForm>
     </Layout>
   )
 }
