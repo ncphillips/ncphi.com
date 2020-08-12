@@ -1,53 +1,30 @@
 import styled from "styled-components"
 import { BlocksControls, InlineTextarea, Block } from "react-tinacms-inline"
 import { useCMS } from "tinacms"
+import { Card, Col } from "react-bootstrap"
 
-const Link = styled(({ index, data, className }) => {
+const Link = ({ index, data }) => {
   const cms = useCMS()
   const url = !cms.enabled ? data.url : undefined
   return (
     <BlocksControls index={index}>
-      <div className={className}>
-        <a href={url}>
-          <h3>
-            <InlineTextarea name="title" />
-          </h3>
-          <p>
-            <InlineTextarea name="description" />
-          </p>
-        </a>
-      </div>
+      <Col>
+        <Card>
+          <div className="card-body">
+            <a href={url} className="text-dark">
+              <h5 className="card-title">
+                <InlineTextarea name="title" />
+              </h5>
+              <p className="card-text">
+                <InlineTextarea name="description" />
+              </p>
+            </a>
+          </div>
+        </Card>
+      </Col>
     </BlocksControls>
   )
-})`
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-
-  :hover,
-  :focus,
-  :active {
-    color: #0070f3;
-    border-color: #0070f3;
-  }
-
-  h3 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-  }
-
-  p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
-`
+}
 
 const link: Block = {
   template: {
