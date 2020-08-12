@@ -79,3 +79,7 @@ function Card({ size, children }) {
   )
 }
 ```
+
+I haven't had much of a chance to use this pattern, but I'm excited to give it a try. The Named Children
+pattern allows us to [separate the concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) of our
+Components. Hopefully this will result in cleaner code that's easier to change.
