@@ -1,3 +1,7 @@
+import "Mundana/assets/css/main.css"
+import "Mundana/assets/css/vendor/aos.css"
+import "Mundana/assets/css/vendor/bootstrap-toc.css"
+import "Mundana/assets/css/vendor/prism.css"
 import App from "next/app"
 import { TinaCMS, TinaProvider, useCMS } from "tinacms"
 import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github"
@@ -9,9 +13,6 @@ export default class Site extends App {
   constructor(props) {
     super(props)
     const enabled = props.pageProps.preview
-    /**
-     * 1. Create the TinaCMS instance
-     */
     this.cms = new TinaCMS({
       enabled,
       apis: {
@@ -20,7 +21,7 @@ export default class Site extends App {
           proxy: "/api/proxy-github",
           authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
-          baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+          baseRepoFullName: process.env.REPO_FULL_NAME,
         }),
       },
       toolbar: enabled,
@@ -30,9 +31,6 @@ export default class Site extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      /**
-       * 4. Wrap the page Component with the Tina and Github providers
-       */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
           onLogin={enterEditMode}
@@ -40,10 +38,6 @@ export default class Site extends App {
           error={pageProps.error}
         >
           <GoogleAnalytics id="UA-86782303-1" />
-          {/**
-           * 5. Add a button for entering Preview/Edit Mode
-           */}
-          <EditLink editMode={pageProps.preview} />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
@@ -72,32 +66,4 @@ const exitEditMode = () => {
   return fetch(`/api/reset-preview`).then(() => {
     window.location.reload()
   })
-}
-
-export interface EditLinkProps {
-  editMode: boolean
-}
-
-export const EditLink = ({ editMode }: EditLinkProps) => {
-  const cms = useCMS()
-
-  return (
-    <div className="edit-wrap">
-      <button onClick={() => (editMode ? cms.disable() : cms.enable())}>
-        {editMode ? "Click to Exit" : "Click to Edit"}
-      </button>
-      <style jsx>{`
-        .edit-wrap {
-          position: absolute;
-          top: 5rem;
-          right: 2rem;
-        }
-        button {
-          border: none;
-          background: white;
-          color: inherit;
-        }
-      `}</style>
-    </div>
-  )
 }

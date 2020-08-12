@@ -34,30 +34,38 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
       title={post.frontmatter.title}
       description={post.frontmatter.description}
     >
-      <InlineForm form={form}>
-        <InlineGroup
-          name="frontmatter"
-          fields={[
-            {
-              name: "title",
-              component: "text",
-              label: "Title",
-            },
-            {
-              name: "description",
-              component: "textarea",
-              label: "Description",
-            },
-          ]}
-        >
-          <h1>
-            <InlineTextareaField name="title" />
-          </h1>
-        </InlineGroup>
-        <InlineWysiwyg name="markdownBody">
-          <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
-        </InlineWysiwyg>
-      </InlineForm>
+      <div className="container pt-4 pb-4">
+        <div className="row justify-content-center">
+          <div className="col-md-12 col-lg-8">
+            <article className="article-post">
+              <InlineForm form={form}>
+                <InlineGroup
+                  name="frontmatter"
+                  fields={[
+                    {
+                      name: "title",
+                      component: "text",
+                      label: "Title",
+                    },
+                    {
+                      name: "description",
+                      component: "textarea",
+                      label: "Description",
+                    },
+                  ]}
+                >
+                  <h1>
+                    <InlineTextareaField name="title" />
+                  </h1>
+                </InlineGroup>
+                <InlineWysiwyg name="markdownBody">
+                  <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
+                </InlineWysiwyg>
+              </InlineForm>
+            </article>
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }

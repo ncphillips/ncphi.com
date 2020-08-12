@@ -1,5 +1,7 @@
 import Link from "next/link"
 import Head from "next/head"
+import { Nav } from "./nav"
+import { Footer } from "./footer"
 
 export function Layout({ title, description, children }) {
   return (
@@ -10,35 +12,9 @@ export function Layout({ title, description, children }) {
         <meta property="og:title" content={title} key="title" />
         <meta name="description" content={description} />
       </Head>
-      <header>
-        <nav>
-          <Link href="/">
-            <h1>ncphi.dev</h1>
-          </Link>
-        </nav>
-      </header>
-      <section id="content">{children}</section>
-      <style jsx>{`
-        header {
-          margin: 0 auto;
-          max-width: 800px;
-        }
-
-        #content {
-          margin: 0 auto;
-          max-width: 800px;
-        }
-
-        header > nav > h1 {
-          font-size: 1.2rem;
-          cursor: pointer;
-        }
-
-        nav {
-          display: flex;
-          flex-direction: horizontal;
-        }
-      `}</style>
+      <Nav siteTitle="ncphi.dev" />
+      {children}
+      <Footer />
     </>
   )
 }
