@@ -18,6 +18,7 @@ import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
 import { Layout } from "../../components/layout"
 import { InlineWysiwyg } from "../../components/inline-editor"
 import { formatDate } from "../../lib/format-date"
+import { WithCodeStyles } from "../../components/markdown-content"
 
 interface BlogFrontmatter {
   title: string
@@ -88,7 +89,13 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
             <div className="col-md-12 col-lg-8">
               <article className="article-post">
                 <InlineWysiwyg name="markdownBody">
-                  <ReactMarkdown>{file.data.markdownBody}</ReactMarkdown>
+                  <ReactMarkdown
+                    renderers={{
+                      code: WithCodeStyles,
+                    }}
+                  >
+                    {file.data.markdownBody}
+                  </ReactMarkdown>
                 </InlineWysiwyg>
               </article>
             </div>
