@@ -7,9 +7,10 @@ description: >-
   Jobs to be Done is an approach to thinking about the role products
   play in people's lives, but what makes it different from other techniques?
 createdAt: "2020-07-24"
+lastEditedAt: "2020-08-12"
 ---
 
-Jobs to be Done is an approach to thinking about the role products play in people's lives. I think it's a great idea, however I dislike most what's written on the topic. Personally I find them long winded in their attempts at describing Jobs to be Done and why it's a useful way of framing your conversations. As such, I've written this document that lists questions I've had about Jobs and the answers I discovered. There is some resources listed at the bottom of this document if you would like to dig deeper.
+"Jobs to be Done" helps you understand the role a product plays in people's lives. It's a great idea but I dislike most what's been written on it. This post lists the questions I had about Jobs and the answers I discovered. If you'd like to dig deeper there's some resources listed at the end.
 
 ### What are Jobs?
 
@@ -50,7 +51,7 @@ You need to look at the context of a job to really understand them. The function
 
 ### How do Jobs relate to the Theory of Constraints?
 
-These two ideas are perfectly compatible, however the Theory of Constraints (ToC) is the more general of the two. ToC provides the fundamental thinking required to improve the performance of systems. Much of the literature of ToC is centered around product delivery systems, but it applies just as well to product design. Why? Because a Job is a process (i.e. system) for accomplishing a goal! We frame our conversation around Jobs to help us identify the poorly performing systems people's lives, and then use the Theory of Constraints to discover the constraints that limit those systems. Once the system and it's constraints have been identified, we can apply our myriad of problem solving skills to remove the constraints and help people achieve their desired progress.
+These two ideas fit together quite well. Theory of Constraints (ToC) is the more general of the two. ToC provides the fundamental thinking required to improve the performance of systems. Much of the literature of ToC is centered around product delivery systems, but it applies just as well to product design. Why? Because a Job is a process (i.e. system) for accomplishing a goal! We frame our conversation around Jobs to help us identify the poorly performing systems people's lives, and then use the Theory of Constraints to discover the constraints that limit those systems. Once the system and it's constraints have been identified, we can apply our myriad of problem solving skills to remove the constraints and help people achieve their desired progress.
 
 ## Notes & Quotes
 
