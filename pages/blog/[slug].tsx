@@ -17,6 +17,7 @@ import { usePlugin } from "tinacms"
 import { listMarkdownPosts } from "../../lib/list-local-markdown-posts"
 import { Layout } from "../../components/layout"
 import { InlineWysiwyg } from "../../components/inline-editor"
+import { formatDate } from "../../lib/format-date"
 
 interface BlogFrontmatter {
   title: string
@@ -65,11 +66,12 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
                       width="70"
                     /> */}
                       <small className="ml-2">
-                        by {"Nolan Phillips"}
+                        published by {"Nolan Phillips"}
                         {/* <InlineTextareaField name="frontmatter.author" /> */}
-                        <span className="text-muted d-block">
+                        {/* <span className="text-muted d-block">
                           A few hours ago &middot; 5 min. read
-                        </span>
+                        </span> */}{" "}
+                        on {formatDate(form.values.frontmatter.createdAt)}
                       </small>
                     </div>
                   </div>

@@ -20,29 +20,37 @@ export default function Blog({ posts }) {
                 <p>Come back later :) </p>
               </>
             )}
-            {posts.map(({ slug, data: post }) => (
-              <div className="mb-3 d-flex justify-content-between">
-                <div className="pr-3">
-                  <h2 className="mb-1 h4 font-weight-bold">
-                    <Link href={`/blog/${slug}`}>
-                      <span className="text-dark">
-                        {post.frontmatter.title || "Unnamed Post"}
-                      </span>
-                    </Link>
-                  </h2>
-                  <p>{post.description}</p>
-                  <div className="card-text text-muted small">
-                    by {post.frontmatter.author || "Nolan Phillips"}{" "}
-                    {post.frontmatter.category ? (
-                      <Badge pill>{post.frontmatter.category}</Badge>
-                    ) : null}
+            {posts
+              .sort(
+                (a, b) =>
+                  // @ts-ignore
+                  new Date(b.data.frontmatter.createdAt) -
+                  // @ts-ignore
+                  new Date(a.data.frontmatter.createdAt)
+              )
+              .map(({ slug, data: post }) => (
+                <div className="mb-3 d-flex justify-content-between">
+                  <div className="pr-3">
+                    <h2 className="mb-1 h4 font-weight-bold">
+                      <Link href={`/blog/${slug}`}>
+                        <span className="text-dark">
+                          {post.frontmatter.title || "Unnamed Post"}
+                        </span>
+                      </Link>
+                    </h2>
+                    <p>{post.description}</p>
+                    <div className="card-text text-muted small">
+                      by {post.frontmatter.author || "Nolan Phillips"}
+                      {post.frontmatter.category ? (
+                        <Badge pill>{post.frontmatter.category}</Badge>
+                      ) : null}
+                    </div>
                   </div>
+                  {post.frontmatter.coverImage ? (
+                    <img height="120" src={post.frontmatter.coverImage} />
+                  ) : null}
                 </div>
-                {post.frontmatter.coverImage ? (
-                  <img height="120" src={post.frontmatter.coverImage} />
-                ) : null}
-              </div>
-            ))}
+              ))}
           </Col>
         </Row>
       </div>
