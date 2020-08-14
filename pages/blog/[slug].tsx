@@ -19,6 +19,7 @@ import { Layout } from "../../components/layout"
 import { InlineWysiwyg } from "../../components/inline-editor"
 import { formatDate } from "../../lib/format-date"
 import { WithCodeStyles } from "../../components/markdown-content"
+import { ContentResponseForm } from "../../components/content-response-form"
 
 interface BlogFrontmatter {
   title: string
@@ -98,6 +99,7 @@ const BlogPostView: NextPage<Props> = ({ file }) => {
                   </ReactMarkdown>
                 </InlineWysiwyg>
               </article>
+              <ContentResponseForm id={form.id} />
             </div>
           </div>
         </div>
