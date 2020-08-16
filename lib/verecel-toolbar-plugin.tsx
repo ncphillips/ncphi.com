@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
 import { useCMS } from "tinacms"
+import { useRouter } from "next/router"
 
 export const VercelToolbarPlugin = {
   __type: "toolbar:widget",
   name: "Vercel Deployments",
   component() {
+    const router = useRouter()
     const cms = useCMS()
     const [deployment, setDeployment] = useState<any | undefined>()
     const loadDeployment = () => {
@@ -29,7 +31,7 @@ export const VercelToolbarPlugin = {
       return (
         <>
           <a
-            href={`https://${deployment.url}`}
+            href={`https://${deployment.url}${router.asPath}`}
             target="_blank"
             rel="noreferrer noopener"
           >
