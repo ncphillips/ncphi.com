@@ -31,7 +31,7 @@ This pattern works if `<Card>` has just one content section but not if it has mu
 />
 ```
 
-Unfortunately this makes unfamiliar components hard to understand since prop might configure the appearance of the `<Card>` or defines it's content. It also becomes messy when the content is not plain text:
+Unfortunately this makes unfamiliar components hard to understand since prop might configure the appearance of the `<Card>` or defines its content. It also becomes messy when the content is not plain text:
 
 ```tsx
 <Card
