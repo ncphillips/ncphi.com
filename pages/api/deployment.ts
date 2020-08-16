@@ -31,7 +31,7 @@ async function listDeployments(org: string, repo: string, branch: string) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.VERCEL_AUTH_TOKEN}`,
+      Authorization: `Bearer ${process.env.DEPLOYMENT_AUTH_TOKEN}`,
     },
   })
 
