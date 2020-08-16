@@ -1,28 +1,26 @@
 ---
-title: Separating Concerns in React with the 'Named Children' Pattern
+title: Separating Concerns with the 'Named Children' Pattern
 category: react
 author: Nolan Phillips
 description: >-
-  Props and children are different things, but when the a component takes multiple children
-  things can get awkward. The Named Children pattern helps us deal with this.
-createdAt: "2020-08-12"
+  Props and children are different things, but when the a component takes
+  multiple children things can get awkward. The Named Children pattern helps us
+  deal with this.
+createdAt: '2020-08-12'
 ---
-
-Components that wrap other content usually use the `children` pattern. For example, if we want to put a message inside of a `<Card>` we would do:
+React Components for wrapping content often use the `children` pattern. For example, this `<Card>` wraps the text "Hello World":
 
 ```tsx
 <Card>Hello World</Card>
 ```
 
-If we want to adjust how big the `<Card>` itself works then we could pass it extra props:
+The size of the `<Card>` could be set with a prop:
 
 ```tsx
 <Card size="large">Hello World</Card>
 ```
 
-This pattern works well if there's only the main body, but what if the `<Card>` has multiple sections?
-
-Usually we might pass the content in as `props`.
+This pattern works if `<Card>` has just one content section but not if it has multiple. In that case the content might be provided by `props` instead of `children`:
 
 ```tsx
 <Card
@@ -33,12 +31,7 @@ Usually we might pass the content in as `props`.
 />
 ```
 
-This is kinda awkward though because `props` is mixing two concerns:
-
-- it configures of the `Card` itself
-- it provides the inner-content of the `Card`
-
-This looks especially weird if we wanted to wrap `example` in a `<strong>` tag:
+This makes unfamiliar components hard to understand since prop might configure the appearance of the `<Card>` or defines it's content. It also becomes messy when the content is not plain text:
 
 ```tsx
 <Card
@@ -53,7 +46,7 @@ This looks especially weird if we wanted to wrap `example` in a `<strong>` tag:
 />
 ```
 
-Luckily the _Named Children_ pattern is an approach that deals with that mixing of concerns!
+The _Named Children_ pattern helps with the mixing of concerns. Instead of setting `children` as content, an object provides a mapping of section names to content. This separates the `<Card>` config from it's content making it easier to understand each prop's purpose.
 
 ```tsx
 <Card size="large">
@@ -65,12 +58,10 @@ Luckily the _Named Children_ pattern is an approach that deals with that mixing 
 </Card>
 ```
 
-With this pattern the `Card` receives an object as `children` which maps the name of the section to it's content. The _Named Children_ pattern allows us to separate the config for the `Card` from the definition of it's children. This makes it easier to see what is configuration, and what is content to more quickly understand what's happening with this component.
-
-Here's a quick example of what that `Card` component might look like:
+The `children` can then be used inside `<Card>` as any other object:
 
 ```tsx
-function Card({ size, children }) {
+function Card({ size = "medium", children }) {
   return (
     <div className={size}>
       <h2>{children.title}</h2>
@@ -81,6 +72,4 @@ function Card({ size, children }) {
 }
 ```
 
-I haven't had much of a chance to use this pattern, but I'm excited to give it a try. The Named Children
-pattern allows us to [separate the concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) of our
-Components. Hopefully this will result in cleaner code that's easier to change.
+I haven't used this pattern much but it shows promise. The _Named Children_ pattern allows React Components to [separate their concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) which should result in cleaner code that's easier to change.
