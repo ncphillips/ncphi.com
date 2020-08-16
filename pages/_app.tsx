@@ -6,6 +6,7 @@ import App from "next/app"
 import { TinaCMS, TinaProvider, useCMS } from "tinacms"
 import { GithubClient, TinacmsGithubProvider } from "react-tinacms-github"
 import { GoogleAnalytics } from "../lib/use-react-ga"
+import { VercelToolbarPlugin } from "../lib/verecel-toolbar-plugin"
 
 export default class Site extends App {
   cms: TinaCMS
@@ -15,6 +16,7 @@ export default class Site extends App {
     const enabled = props.pageProps.preview
     this.cms = new TinaCMS({
       enabled,
+      plugins: [VercelToolbarPlugin],
       apis: {
         github: new GithubClient({
           authScope: "repo",
