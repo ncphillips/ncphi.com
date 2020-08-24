@@ -21,4 +21,4 @@ In **[Fooled by Randomness](https://www.amazon.com/gp/product/0812975219/ref=as_
 
 **[The Black Swan](https://www.amazon.com/gp/product/081297381X/ref=as_li_tl?ie=UTF8&tag=ncphi-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=081297381X&linkId=a3166330518afa7c7e99d55840ce9246)** expanded on this theme in a in-depth discussion on _the problem of induction_ and the impact of unpredicted yet highly impactful events.
 
-In his fourth book, **[Antifragile](https://www.amazon.com/gp/product/0812979680/ref=as_li_tl?ie=UTF8&tag=ncphi-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=0812979680&linkId=a76ec6e2d7fd648c60f4c986e700e8f4)**, Taleb talks about
+In his fourth book, **[Antifragile](https://www.amazon.com/gp/product/0812979680/ref=as_li_tl?ie=UTF8&tag=ncphi-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=0812979680&linkId=a76ec6e2d7fd648c60f4c986e700e8f4)**, Taleb talks about how uncertainty can be used to our advantage. After reading the first two books I came away confused about the implications of these ideas. Antifragile alleviated my confusion by introducing concepts that I find incredibly helpful.
