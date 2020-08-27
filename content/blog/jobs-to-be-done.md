@@ -4,12 +4,11 @@ draft: false
 category: product management
 author: Nolan Phillips
 description: >-
-  Jobs to be Done is an approach to thinking about the role products
-  play in people's lives, but what makes it different from other techniques?
-createdAt: "2020-07-24"
-lastEditedAt: "2020-08-12"
+  Jobs to be Done is an approach to thinking about the role products play in
+  people's lives, but what makes it different from other techniques?
+createdAt: '2020-07-24'
+lastEditedAt: '2020-08-12'
 ---
-
 "Jobs to be Done" helps you understand the role a product plays in people's lives. It's a great idea but I dislike most what's been written on it. This post lists the questions I had about Jobs and the answers I discovered. If you'd like to dig deeper there's some resources listed at the end.
 
 ### What are Jobs?
@@ -44,10 +43,10 @@ When the product is the focus, the discussion around competition is often myopic
 
 You need to look at the context of a job to really understand them. The functional component is obviously important, but so are the emotional and social aspects of the job. Customers perform one or more of the following four actions when evaluating and choosing solutions to their job to be done:
 
-- Big hire: the point when they decide to select a given solution, after weighing all of the options.
-- Small hire: the point when they decide to continue using a given solution when the job needs to be done in their daily lives.
-- The fire: when a solution no longer meets the functional, emotional, and social constraints of the job the way it used it, the customer stops using it.
-- The avoid: when the emotional or social constraints are so strong, that the customer chooses to avoid doing the job altogether.
+* Big hire: the point when they decide to select a given solution, after weighing all of the options.
+* Small hire: the point when they decide to continue using a given solution when the job needs to be done in their daily lives.
+* The fire: when a solution no longer meets the functional, emotional, and social constraints of the job the way it used it, the customer stops using it.
+* The avoid: when the emotional or social constraints are so strong, that the customer chooses to avoid doing the job altogether.
 
 ### How do Jobs relate to the Theory of Constraints?
 
@@ -55,16 +54,16 @@ These two ideas fit together quite well. Theory of Constraints (ToC) is the more
 
 ## Notes & Quotes
 
-- There's jobs people want to do, and there's jobs people don't want to do
-- Look for ways that people use your product that you never intended
-- You need to look at the context of a job to really understand them. The functional component is obviously important, but so are the emotional and social aspects of the job.
-- "You can't do design requirements in a conference room"
-- It's important to make it clear what job your product is meant to be hired for. If you don't, people will come back and claim that you have a crummy product.
-- It's not so much the specific tactics you use as the questions that you try to answer
-- Look for the non-consumption situations; for places where people opt to not hire anything for a job because all the existing candidates are inadequate
-- Sales data is incomplete. The purchase is the initial hire, but customer's re-hire your product every time they use it. A product that is bought but never used will not be terribly successful. Just ask the Italian Seasoning that has been sitting unopened in my cupboard for the last 4 years.
+* There's jobs people want to do, and there's jobs people don't want to do
+* Look for ways that people use your product that you never intended
+* You need to look at the context of a job to really understand them. The functional component is obviously important, but so are the emotional and social aspects of the job.
+* "You can't do design requirements in a conference room"
+* It's important to make it clear what job your product is meant to be hired for. If you don't, people will come back and claim that you have a crummy product.
+* It's not so much the specific tactics you use as the questions that you try to answer
+* Look for the non-consumption situations; for places where people opt to not hire anything for a job because all the existing candidates are inadequate
+* Sales data is incomplete. The purchase is the initial hire, but customer's re-hire your product every time they use it. A product that is bought but never used will not be terribly successful. Just ask the Italian Seasoning that has been sitting unopened in my cupboard for the last 4 years.
 
 ## Resources
 
-- Competing Against Luck
-- Intercom on Jobs to Be Done
+* [Competing Against Luck](https://bookshop.org/books/competing-against-luck-the-story-of-innovation-and-customer-choice/9780062435613)
+* [Intercom on Jobs to Be Done](https://www.intercom.com/resources/books/intercom-jobs-to-be-done)
