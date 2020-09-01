@@ -19,7 +19,6 @@ export default class Site extends App {
       plugins: [VercelToolbarPlugin],
       apis: {
         github: new GithubClient({
-          authScope: "repo",
           proxy: "/api/proxy-github",
           authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
