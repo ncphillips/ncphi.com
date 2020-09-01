@@ -9,7 +9,7 @@ createdAt: "2020-09-01"
 lastEditedAt: "2020-09-01"
 ---
 
-Four months ago the TinaCMS made it's first major adjustment to how work was chosen and completed. After reading **[Shape Up](https://basecamp.com/shapeup) by Ryan Singer** the team decide to adopt some of it's key practices. By adopting these practices our team has increased productivity and lowered it's stress. **We are now able to focus deeply on hard problems, take guilt-free time to rest and sharpen our skills, and regularly think long term about the direction of our work.**
+Four months ago the [TinaCMS](https://tinacms.org) made it's first major adjustment to how work was chosen and completed. After reading **[Shape Up](https://basecamp.com/shapeup) by Ryan Singer** the team decide to adopt some of it's key practices. By adopting these practices our team has increased productivity and lowered it's stress. **We are now able to focus deeply on hard problems, take guilt-free time to rest and sharpen our skills, and regularly think long term about the direction of our work.**
 
 ## What was the TinaCMS process?
 
@@ -19,11 +19,11 @@ That is the most fitting description of what the TinaCMS process was at the begi
 
 The problem was not so much in what we were doing, but in what we were not doing. With no fixed timeframes, no formal process for proposing new projects, and no explicit opportunities for rest and professional development, the team's anxieties were high and their focus was subject to change at all times. Furthermore, without a formal objective the team might be trying to make progress in a dozen directions, almost ensuring that no progress was being made in any direction.
 
-This is not to say we were terribly unproductive–we did do some great work–but that productivity was by no means guaranteed. The system we created made distraction a natural tendency, and fighting against that tendency was an exhausting exercise. The problem with this lack of structure was our effectiveness was left almost entirely to luck.
+It's not that we were unproductive, but that our productivity was by no means guaranteed. The system we created made distraction a natural tendency, and fighting against that tendency was an exhausting exercise. The problem with this lack of structure was our productivity was decided mostly by luck.
 
 ## What is the TinaCMS process now?
 
-The changes we made were almost entirely additive. Our process week-to-week has remained mostly the same but it now lives within an 8 week meta-process.:
+The changes we made were almost entirely additive. Our process week-to-week is mostly unchanged but it now lives within an 8 week meta-process:
 
 - **Week 1:** Project Pitching and Selection
 - **Weeks 2 to 7**: Project Planning and Execution
