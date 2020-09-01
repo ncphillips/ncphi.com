@@ -1,14 +1,15 @@
 ---
 title: Implementing Shape Up
-draft: true
+draft: false
 category: product management
 author: Nolan Phillips
-description:
-createdAt: "2020-07-24"
-lastEditedAt: "2020-08-12"
+description: |
+  The TinaCMS team read Shape Up and adopted some of it's key practices. A few months later and we are able to focus deeply on hard problems, take guilt-free time to rest and sharpen our skills, and regularly think long term about the direction of our work.
+createdAt: "2020-09-01"
+lastEditedAt: "2020-09-01"
 ---
 
-Four months ago the TinaCMS made it's first major adjustment to how work was chosen and completed. After reading **[Shape Up](https://basecamp.com/shapeup) by Ryan Singer** the team decide to adopt some of it's key practices. By adopting these practices our team has increased productivity and lowered it's stress. ****_We are now able to focus deeply on hard problems, take guilt-free time to rest and sharpen our skills, and regularly think long term about the direction of our work._****
+Four months ago the TinaCMS made it's first major adjustment to how work was chosen and completed. After reading **[Shape Up](https://basecamp.com/shapeup) by Ryan Singer** the team decide to adopt some of it's key practices. By adopting these practices our team has increased productivity and lowered it's stress. **We are now able to focus deeply on hard problems, take guilt-free time to rest and sharpen our skills, and regularly think long term about the direction of our work.**
 
 ## What was the TinaCMS process?
 
@@ -35,7 +36,7 @@ Finding projects to do is easy but choosing the right one to do is extremely har
 - **How are projects pitched?** People in the company submit pitches as written documents in Basecamp. Those pitches describe the project's scope, it's value to the business and the open source community, and the risks to the project. After a pitch is submitted, other people in the company jump in to review them.
 - **What happens during review?** The purpose of review is not just to read the pitches, but improve them. Reviewers use the comment section to ask questions and challenge the assumptions and assertions of the pitch. The author can then use this feedback to clarify and strengthen their arguments to give the pitch the best chance of being selected.
 - **How are projects selected?** Later in the week there is a betting table meeting over Zoom. We summarize the pitches and discuss their value relative to one another. Once the discussion is complete, the members of the betting table cast their vote for the project that is perceived as the most impactful task or feature for the current goals of TinaCMS.
-- **Why go through this process?** The purpose of this process is to hold each other accountable for the ideas we bring forward. \*\*\*\*Our time is incredibly valuable, we cannot afford to run around acting on every half baked idea that comes up. We use this process to make sure substantial projects have finished baking.
+- **Why go through this process?** The purpose of this process is to hold each other accountable for the ideas we bring forward. Our time is incredibly valuable, we cannot afford to run around acting on every half baked idea that comes up. We use this process to make sure substantial projects have finished baking.
 - **Does everything have to be pitched?** No. Not everything needs to be pitched formally, but the bigger the project is the more likely that it should be. If someone outside of the team needs a little feature or API change then it can just be dealt with informally. The soft rule is that if the project is not in alignment with the team's current objectives and it is _large enough to distract them_ and jeopardize their current projects then it should probably be pitched.
 - **Who can pitch projects?** Anyone in the company is free to pitch a project, but it is likely that people outside of the TinaCMS team will need to work with a core member to flesh out their pitch.
 - **How can I give my pitch the best chance?** Pitches need to speak to both the business, the open source community, and the codebase itself. If you're not confident you can speak to all of those things, then you should collaborate with as many people as possible. Getting people in early to review your pitch will go a long way towards making sure it's as solid as possible. While we don't exactly follow the process outlined in Shape Up, reading the ['Write the Pitch' chapter](https://basecamp.com/shapeup/1.5-chapter-06) provides solid context for the level of consideration expected.
@@ -112,10 +113,8 @@ _Significantly for the better!_
 
 ## Visualizing this Change
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa65c938-af13-4e24-90ba-355368f8e433/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa65c938-af13-4e24-90ba-355368f8e433/Untitled.png)
-
-Visualizing Anxiety
+![Visualizing Anxiety](/images/shape-up-before-after.png)
 
 - X-Axis: Months
 - Each Rectangle is a project; if they're stacked that means they're happening simultaneously
-- Honestly the before graph downplays it. There's never more than 6 things at once.
+- The "Before" image downplays how much was going on. In that picture there's never more than 6 things at once, when in reality we would sometimes have 8-12 things in progress.
