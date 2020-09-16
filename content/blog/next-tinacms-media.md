@@ -4,7 +4,7 @@ category: tinacms
 author: Nolan Phillips
 description: >-
   Working with Media in TinaCMS can be laborious. There's a lot of configuration needed to make your image fields work correctly, and it often has to be duplicated across multiple fields. Luckily, when using Next.js and GitHub we can take care of this problem by subclassing the `GithubMediaStore`.
-createdAt: "2020-08-16"
+createdAt: "2020-09-16"
 ---
 
 Working with Media in [TinaCMS](https://github.com/tinacms/tinacms) can be laborious. There's a lot of configuration needed to make your image fields work. This config is often copied across many fields and components. Luckily, when using [Next.js and Github](https://tinacms.org/guides/nextjs/github/initial-setup/) we can take care of this problem by subclassing the `GithubMediaStore`.
