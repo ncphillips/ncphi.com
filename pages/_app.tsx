@@ -48,6 +48,13 @@ export default class Site extends App {
             integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
             crossOrigin="anonymous"
           />
+          <script
+            async
+            defer
+            data-domain="ncphi.dev"
+            src="https://plausible.io/js/plausible.js"
+          ></script>
+
           <GoogleAnalytics id="UA-86782303-1" />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
